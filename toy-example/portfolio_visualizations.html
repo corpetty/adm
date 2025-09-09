@@ -246,6 +246,9 @@
     <script src="js/timeline-gantt.js"></script>
     <script src="js/portfolio-dashboard.js"></script>
     <script src="js/decision-tree.js"></script>
+    <script src="js/export-utils.js"></script>
+    <script src="js/filter-controls.js"></script>
+    <script src="js/scenario-comparison.js"></script>
 
     <script>
         // Global variables
@@ -284,6 +287,9 @@
             createTimelineGantt();
             createPortfolioDashboard();
             createDecisionTree();
+            
+            // Initialize new features
+            initializeAdvancedFeatures();
             
             // Set up event listeners
             setupEventListeners();
@@ -328,6 +334,207 @@
         
         function formatPercentage(value) {
             return (value * 100).toFixed(1) + '%';
+        }
+
+        // Initialize advanced features
+        function initializeAdvancedFeatures() {
+            // Load portfolio data for scenario comparison
+            if (window.scenarioComparison && strategicData) {
+                window.scenarioComparison.loadCurrentPortfolio(strategicData);
+            }
+            
+            // Set up filter event listeners for cross-visualization filtering
+            document.addEventListener('portfolioFiltersChanged', function(event) {
+                const filters = event.detail.filters;
+                applyFiltersToVisualizations(filters);
+            });
+        }
+
+        // Apply filters across all visualizations
+        function applyFiltersToVisualizations(filters) {
+            // Filter strategic data
+            let filteredStrategicData = strategicData.filter(project => {
+                return window.filterControls.projectPassesFilters(project);
+            });
+            
+            // Update strategic matrix with filtered data
+            updateStrategicMatrixWithData(filteredStrategicData);
+            
+            // Filter dependency data
+            let filteredDependencyNodes = dependencyData.nodes.filter(project => {
+                return window.filterControls.projectPassesFilters(project);
+            });
+            
+            // Update dependency graph with filtered data
+            updateDependencyGraphWithData(filteredDependencyNodes);
+            
+            console.log(`Applied filters: ${filteredStrategicData.length} projects match criteria`);
+        }
+
+        // Enhanced update functions for filtered data
+        function updateStrategicMatrixWithData(data) {
+            const container = d3.select("#strategic-matrix svg g");
+            const width = 800 - 230;
+            const height = 500 - 130;
+            
+            const xScale = d3.scaleLinear()
+                .domain(d3.extent(strategicData, d => d.strategic_score_avg))
+                .range([0, width])
+                .nice();
+            
+            const yScale = d3.scaleLinear()
+                .domain(d3.extent(strategicData, d => d.risk_score))
+                .range([height, 0])
+                .nice();
+            
+            const sizeScale = d3.scaleSqrt()
+                .domain(d3.extent(strategicData, d => d.budget_allocated))
+                .range([15, 60]);
+            
+            // Update bubbles with filtered data
+            const bubbles = container.selectAll(".bubble")
+                .data(data, d => d.project_id);
+            
+            bubbles.exit()
+                .transition()
+                .duration(500)
+                .attr("opacity", 0)
+                .remove();
+            
+            bubbles.enter()
+                .append("circle")
+                .attr("class", "bubble")
+                .attr("opacity", 0)
+                .merge(bubbles)
+                .transition()
+                .duration(500)
+                .attr("cx", d => xScale(d.strategic_score_avg))
+                .attr("cy", d => yScale(d.risk_score))
+                .attr("r", d => sizeScale(d.budget_allocated))
+                .attr("fill", d => statusColors[d.status] || "#95a5a6")
+                .attr("opacity", 0.7);
+            
+            // Update labels
+            const labels = container.selectAll(".bubble-label")
+                .data(data, d => d.project_id);
+            
+            labels.exit()
+                .transition()
+                .duration(500)
+                .attr("opacity", 0)
+                .remove();
+            
+            labels.enter()
+                .append("text")
+                .attr("class", "bubble-label")
+                .attr("opacity", 0)
+                .merge(labels)
+                .transition()
+                .duration(500)
+                .attr("x", d => xScale(d.strategic_score_avg))
+                .attr("y", d => yScale(d.risk_score) + sizeScale(d.budget_allocated) + 15)
+                .text(d => d.name.length > 12 ? d.name.substring(0, 12) + "..." : d.name)
+                .style("font-size", "10px")
+                .style("font-weight", "bold")
+                .style("fill", "#2c3e50")
+                .style("text-anchor", "middle")
+                .attr("opacity", 1);
+        }
+
+        function updateDependencyGraphWithData(filteredNodes) {
+            // Filter links to only include those between filtered nodes
+            const nodeIds = new Set(filteredNodes.map(d => d.project_id));
+            const filteredLinks = dependencyData.links.filter(link => 
+                nodeIds.has(link.source_project_id) && nodeIds.has(link.target_project_id)
+            );
+            
+            const container = d3.select("#dependency-graph svg g");
+            const width = 800 - 40;
+            const height = 600 - 40;
+            
+            // Convert links to use source/target instead of source_project_id/target_project_id
+            const processedLinks = filteredLinks.map(d => ({
+                source: d.source_project_id,
+                target: d.target_project_id,
+                dependency_type: d.dependency_type,
+                dependency_strength: d.dependency_strength,
+                impact_if_broken: d.impact_if_broken
+            }));
+            
+            const simulation = d3.forceSimulation(filteredNodes)
+                .force("link", d3.forceLink(processedLinks)
+                    .id(d => d.project_id)
+                    .distance(150))
+                .force("charge", d3.forceManyBody().strength(-300))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("collision", d3.forceCollide().radius(50));
+            
+            const budgetScale = d3.scaleSqrt()
+                .domain(d3.extent(dependencyData.nodes, d => d.budget_allocated))
+                .range([15, 50]);
+            
+            const strengthScale = d3.scaleLinear()
+                .domain([1, 5])
+                .range([1, 5]);
+            
+            // Update links
+            const links = container.select(".links")
+                .selectAll(".link")
+                .data(processedLinks);
+            
+            links.exit().remove();
+            
+            const linksEnter = links.enter()
+                .append("line")
+                .attr("class", "link");
+            
+            const linksUpdate = linksEnter.merge(links)
+                .attr("stroke", d => dependencyTypeColors[d.dependency_type])
+                .attr("stroke-width", d => strengthScale(d.dependency_strength));
+            
+            // Update nodes
+            const nodes = container.select(".nodes")
+                .selectAll(".node-group")
+                .data(filteredNodes, d => d.project_id);
+            
+            nodes.exit().remove();
+            
+            const nodesEnter = nodes.enter()
+                .append("g")
+                .attr("class", "node-group");
+            
+            nodesEnter.append("circle")
+                .attr("class", "node");
+            
+            nodesEnter.append("text")
+                .attr("class", "node-label")
+                .attr("dy", "0.35em");
+            
+            const nodesUpdate = nodesEnter.merge(nodes);
+            
+            nodesUpdate.select(".node")
+                .attr("r", d => budgetScale(d.budget_allocated))
+                .attr("fill", d => statusColors[d.status] || "#95a5a6");
+            
+            nodesUpdate.select(".node-label")
+                .text(d => d.name.length > 15 ? d.name.substring(0, 15) + "..." : d.name)
+                .attr("fill", "#2c3e50");
+            
+            simulation.nodes(filteredNodes);
+            simulation.force("link").links(processedLinks);
+            
+            simulation.on("tick", function() {
+                linksUpdate
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+                
+                nodesUpdate
+                    .attr("transform", d => `translate(${d.x}, ${d.y})`);
+            });
+            
+            simulation.alpha(1).restart();
         }
 
         // Dependency Graph Implementation

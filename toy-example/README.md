@@ -294,16 +294,97 @@ Current test results show:
 - ✓ Valid decision tree with 13 nodes and proper structure
 - ✓ HTTP server accessibility for all required files
 
+## Advanced Features
+
+### Export Functionality
+
+The portfolio suite includes comprehensive export capabilities:
+
+- **Individual Visualization Export:** Each visualization has an export button (📥) in the top-right corner
+- **Bulk Export:** "Export All Visualizations" button exports all charts as PNG files
+- **High-Quality Output:** Exports include white backgrounds and proper sizing for presentations
+- **Staggered Downloads:** Multiple exports are automatically staggered to prevent browser issues
+
+**Usage:**
+- Click individual export buttons on each visualization
+- Use the global "Export All Visualizations" button for complete portfolio export
+- Files are automatically downloaded with descriptive names
+
+### Advanced Portfolio Filtering
+
+Cross-visualization filtering system allows dynamic exploration of portfolio data:
+
+**Filter Controls:**
+- **Project Status:** Filter by Active, Planning, Complete, or On Hold
+- **Strategic Priority:** Filter by Critical, High, Medium, or Low priority
+- **Risk Level:** Filter by Low (1-3), Medium (4-6), or High (7-10) risk scores
+- **Budget Range:** Dual-slider for minimum and maximum budget allocation
+- **Completion Range:** Filter by project completion percentage
+
+**Features:**
+- **Real-time Updates:** Filters apply instantly across all visualizations
+- **Cross-Visualization Sync:** Changes affect dependency network, strategic matrix, and other charts
+- **Filter Summary:** Active filters are clearly displayed with current criteria
+- **Reset Functionality:** One-click reset to clear all filters
+
+**Usage:**
+1. Use the Portfolio Filters panel on the left side of the screen
+2. Adjust any combination of filters using dropdowns and sliders
+3. Click "Apply Filters" to update all visualizations
+4. Use "Reset" to clear all filters and return to full portfolio view
+
+### Scenario Planning & Comparison
+
+Interactive scenario planning tool for strategic portfolio analysis:
+
+**Scenario Configuration:**
+- **Current Portfolio:** Baseline scenario with actual portfolio metrics
+- **Scenario 1 & 2:** Customizable alternative scenarios
+- **Budget Adjustments:** Apply percentage changes (+/-20%, +50%, no change)
+- **Project Selection:** Include/exclude specific projects from scenarios
+- **Custom Naming:** Rename scenarios for clarity (e.g., "High Growth Strategy", "Risk Mitigation Focus")
+
+**Scenario Metrics:**
+- Total project count and budget allocation
+- Average risk and strategic scores
+- Average completion percentage
+- Projected ROI calculations
+
+**Comparison Features:**
+- **Side-by-side Metrics:** Compare key indicators across all scenarios
+- **Recommendation Engine:** Automated analysis highlighting scenario advantages
+- **Interactive Comparison Modal:** Detailed comparison table with strategic insights
+- **What-if Analysis:** Test different portfolio compositions and budget allocations
+
+**Usage:**
+1. Use the Scenario Planning panel on the right side of the screen
+2. Switch between Current, Scenario 1, and Scenario 2 tabs
+3. Configure scenario parameters (budget, project selection)
+4. Click "Calculate Scenario" to generate metrics
+5. Use "Compare All Scenarios" for comprehensive analysis
+
+### Integration Features
+
+**Cross-Feature Integration:**
+- **Filter + Export:** Export filtered views of visualizations
+- **Scenario + Filter:** Apply filters within scenario planning
+- **Real-time Sync:** All features work together seamlessly
+
+**Performance Optimizations:**
+- **Efficient Rendering:** Smooth transitions and updates
+- **Memory Management:** Optimized for large portfolios
+- **Browser Compatibility:** Works across modern browsers
+
 ## Future Enhancements
 
 ### Potential Additions
 
-- **Scenario Planning:** What-if analysis with parameter sliders
 - **Portfolio Optimization:** Algorithmic project selection tools
 - **Real-time Updates:** WebSocket integration for live data
-- **Export Features:** PDF/PNG export of visualizations
 - **Mobile Support:** Touch-optimized interactions
-- **Advanced Filtering:** Cross-visualization filtering and linking
+- **Advanced Analytics:** Machine learning for project success prediction
+- **Collaboration Features:** Multi-user scenario sharing
+- **API Integration:** Connect to external project management systems
 
 ### Advanced Analytics
 
