@@ -1,0 +1,9 @@
+event_id,project_id,milestone_name,event_type,planned_date,actual_date,criticality,predecessor_events,status,notes
+EVT001,PRJ001,Requirements Gathering Complete,milestone,2025-02-15,2025-02-18,Medium,,Complete,Slight delay due to stakeholder availability
+EVT002,PRJ001,UI/UX Design Phase,milestone,2025-03-30,,High,EVT001,In Progress,Design reviews scheduled weekly
+EVT003,PRJ002,Vendor Selection,milestone,2025-04-15,,Critical,,Planned,RFP process initiated
+EVT004,PRJ001,Beta Launch,milestone,2025-07-15,,Critical,EVT002,Planned,Customer feedback collection phase
+EVT005,PRJ003,API Design Complete,milestone,2025-03-15,,High,,Planned,Technical architecture review
+EVT006,PRJ003,Core API Development,milestone,2025-06-30,,Critical,EVT005,Planned,First version of unified API
+EVT007,PRJ004,Mobile App Design,milestone,2025-07-01,,Medium,EVT002,Planned,Depends on portal design completion
+EVT008,PRJ004,App Store Submission,milestone,2025-10-15,,High,EVT007,Planned,iOS and Android submission

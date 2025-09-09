@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Strategic Visualizations</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        
+        .visualization-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+        
+        .viz-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .viz-description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        
+        /* Dependency Graph Styles */
+        .node {
+            cursor: pointer;
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+        
+        .link {
+            stroke-opacity: 0.6;
+            cursor: pointer;
+        }
+        
+        .node-label {
+            font-size: 12px;
+            font-weight: bold;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        
+        /* Resource Matrix Styles */
+        .matrix-cell {
+            stroke: #fff;
+            stroke-width: 1px;
+            cursor: pointer;
+        }
+        
+        .matrix-label {
+            font-size: 11px;
+            text-anchor: middle;
+        }
+        
+        .axis-label {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        /* Strategic Matrix Styles */
+        .bubble {
+            cursor: pointer;
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+        
+        .bubble-label {
+            font-size: 10px;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        
+        .axis {
+            font-size: 12px;
+        }
+        
+        .axis-title {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        /* Tooltip Styles */
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            max-width: 250px;
+        }
+        
+        /* Legend Styles */
+        .legend {
+            font-size: 12px;
+        }
+        
+        .legend-item {
+            margin-bottom: 5px;
+        }
+        
+        /* Controls */
+        .controls {
+            margin-bottom: 15px;
+        }
+        
+        .control-group {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        select, input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portfolio Strategic Visualizations</h1>
+        
+        <!-- Dependency Graph -->
+        <div class="visualization-section">
+            <div class="viz-title">Project Dependency Network</div>
+            <div class="viz-description">
+                Interactive network showing project dependencies. Node size represents budget allocation, 
+                colors indicate project status, and edge thickness shows dependency strength.
+            </div>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="dependency-filter">Filter by dependency type:</label>
+                    <select id="dependency-filter">
+                        <option value="all">All Dependencies</option>
+                        <option value="resource">Resource</option>
+                        <option value="technical">Technical</option>
+                        <option value="timeline">Timeline</option>
+                    </select>
+                </div>
+            </div>
+            <div id="dependency-graph"></div>
+        </div>
+        
+        <!-- Resource Allocation Matrix -->
+        <div class="visualization-section">
+            <div class="viz-title">Resource Allocation Heatmap</div>
+            <div class="viz-description">
+                Matrix showing resource allocation across projects. Color intensity represents allocation amount.
+                Hover for detailed allocation information.
+            </div>
+            <div id="resource-matrix"></div>
+        </div>
+        
+        <!-- Strategic Positioning -->
+        <div class="visualization-section">
+            <div class="viz-title">Strategic Impact vs Risk Matrix</div>
+            <div class="viz-description">
+                Bubble chart positioning projects by strategic score and risk level. 
+                Bubble size represents budget allocation, colors indicate project status.
+            </div>
+            <div class="controls">
+                <div class="control-group">
+                    <label for="status-filter">Filter by status:</label>
+                    <select id="status-filter">
+                        <option value="all">All Projects</option>
+                        <option value="Active">Active</option>
+                        <option value="Planning">Planning</option>
+                        <option value="Complete">Complete</option>
+                    </select>
+                </div>
+            </div>
+            <div id="strategic-matrix"></div>
+        </div>
+        
+        <!-- Timeline Gantt Chart -->
+        <div class="visualization-section">
+            <div class="viz-title">Project Timeline & Dependencies</div>
+            <div class="viz-description">
+                Gantt chart showing project timelines with dependency relationships and completion progress.
+                Green bars indicate completion percentage, arrows show dependencies between projects.
+            </div>
+            <div id="timeline-gantt"></div>
+        </div>
+        
+        <!-- Portfolio Dashboard -->
+        <div class="visualization-section">
+            <div class="viz-title">Portfolio Management Dashboard</div>
+            <div class="viz-description">
+                Comprehensive dashboard with key performance indicators, budget distribution, risk analysis,
+                completion tracking, and resource utilization trends.
+            </div>
+            <div id="portfolio-dashboard"></div>
+        </div>
+        
+        <!-- Decision Tree -->
+        <div class="visualization-section">
+            <div class="viz-title">Portfolio Investment Decision Tree</div>
+            <div class="viz-description">
+                Interactive decision tree for portfolio investment decisions based on strategic priority, risk assessment, 
+                ROI analysis, and budget considerations. Click on outcome nodes to view detailed project information and recommendations.
+            </div>
+            <div id="decision-tree"></div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip" style="display: none;"></div>
+
+    <!-- Load visualization scripts -->
+    <script src="js/dependency-graph.js"></script>
+    <script src="js/resource-matrix.js"></script>
+    <script src="js/strategic-matrix.js"></script>
+    <script src="js/timeline-gantt.js"></script>
+    <script src="js/portfolio-dashboard.js"></script>
+    <script src="js/decision-tree.js"></script>
+
+    <script>
+        // Global variables
+        let dependencyData, resourceMatrixData, strategicData;
+        let tooltip = d3.select("#tooltip");
+        
+        // Color scales
+        const statusColors = {
+            'Active': '#2ecc71',
+            'Planning': '#f39c12', 
+            'Complete': '#3498db',
+            'On Hold': '#e74c3c'
+        };
+        
+        const dependencyTypeColors = {
+            'resource': '#e74c3c',
+            'technical': '#3498db',
+            'timeline': '#f39c12'
+        };
+        
+        // Load all data
+        Promise.all([
+            d3.json('visualization_data/dependency_network.json'),
+            d3.json('visualization_data/resource_matrix.json'),
+            d3.json('visualization_data/strategic_positioning.json')
+        ]).then(function([depData, resData, stratData]) {
+            console.log("Data loaded successfully");
+            dependencyData = depData;
+            resourceMatrixData = resData;
+            strategicData = stratData;
+            
+            // Initialize visualizations
+            createDependencyGraph();
+            createResourceMatrix();
+            createStrategicMatrix();
+            createTimelineGantt();
+            createPortfolioDashboard();
+            createDecisionTree();
+            
+            // Set up event listeners
+            setupEventListeners();
+        }).catch(function(error) {
+            console.error('Error loading data:', error);
+        });
+        
+        function setupEventListeners() {
+            // Dependency filter
+            d3.select("#dependency-filter").on("change", function() {
+                updateDependencyGraph(this.value);
+            });
+            
+            // Status filter
+            d3.select("#status-filter").on("change", function() {
+                updateStrategicMatrix(this.value);
+            });
+        }
+        
+        // Tooltip functions
+        function showTooltip(content, event) {
+            tooltip
+                .style("display", "block")
+                .html(content)
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 10) + "px");
+        }
+        
+        function hideTooltip() {
+            tooltip.style("display", "none");
+        }
+        
+        // Utility functions
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value);
+        }
+        
+        function formatPercentage(value) {
+            return (value * 100).toFixed(1) + '%';
+        }
+
+        // Dependency Graph Implementation
+        function createDependencyGraph() {
+            const container = d3.select("#dependency-graph");
+            const width = 800;
+            const height = 600;
+            const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+            
+            container.selectAll("*").remove();
+            
+            const svg = container.append("svg")
+                .attr("width", width)
+                .attr("height", height);
+            
+            const g = svg.append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`);
+            
+            const linkGroup = g.append("g").attr("class", "links");
+            const nodeGroup = g.append("g").attr("class", "nodes");
+            
+            createDependencyLegend(svg, width, height);
+            updateDependencyGraph("all");
+        }
+
+        function updateDependencyGraph(filterType) {
+            const container = d3.select("#dependency-graph svg g");
+            const width = 800 - 40;
+            const height = 600 - 40;
+            
+            let filteredLinks = dependencyData.links;
+            if (filterType !== "all") {
+                filteredLinks = dependencyData.links.filter(d => d.dependency_type === filterType);
+            }
+            
+            const nodeIds = new Set();
+            filteredLinks.forEach(link => {
+                nodeIds.add(link.source_project_id);
+                nodeIds.add(link.target_project_id);
+            });
+            
+            const filteredNodes = dependencyData.nodes.filter(d => nodeIds.has(d.project_id));
+            
+            // Convert links to use source/target instead of source_project_id/target_project_id
+            const processedLinks = filteredLinks.map(d => ({
+                source: d.source_project_id,
+                target: d.target_project_id,
+                dependency_type: d.dependency_type,
+                dependency_strength: d.dependency_strength,
+                impact_if_broken: d.impact_if_broken
+            }));
+            
+            const simulation = d3.forceSimulation(filteredNodes)
+                .force("link", d3.forceLink(processedLinks)
+                    .id(d => d.project_id)
+                    .distance(150))
+                .force("charge", d3.forceManyBody().strength(-300))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("collision", d3.forceCollide().radius(50));
+            
+            const budgetScale = d3.scaleSqrt()
+                .domain(d3.extent(filteredNodes, d => d.budget_allocated))
+                .range([15, 50]);
+            
+            const strengthScale = d3.scaleLinear()
+                .domain([1, 5])
+                .range([1, 5]);
+            
+            // Update links
+            const links = container.select(".links")
+                .selectAll(".link")
+                .data(processedLinks);
+            
+            links.exit().remove();
+            
+            const linksEnter = links.enter()
+                .append("line")
+                .attr("class", "link");
+            
+            const linksUpdate = linksEnter.merge(links)
+                .attr("stroke", d => dependencyTypeColors[d.dependency_type])
+                .attr("stroke-width", d => strengthScale(d.dependency_strength))
+                .on("mouseover", function(event, d) {
+                    const content = `
+                        <strong>Dependency</strong><br/>
+                        Type: ${d.dependency_type}<br/>
+                        Strength: ${d.dependency_strength}/5<br/>
+                        Impact if broken: ${d.impact_if_broken}
+                    `;
+                    showTooltip(content, event);
+                })
+                .on("mouseout", hideTooltip);
+            
+            // Update nodes
+            const nodes = container.select(".nodes")
+                .selectAll(".node-group")
+                .data(filteredNodes, d => d.project_id);
+            
+            nodes.exit().remove();
+            
+            const nodesEnter = nodes.enter()
+                .append("g")
+                .attr("class", "node-group");
+            
+            nodesEnter.append("circle")
+                .attr("class", "node");
+            
+            nodesEnter.append("text")
+                .attr("class", "node-label")
+                .attr("dy", "0.35em");
+            
+            const nodesUpdate = nodesEnter.merge(nodes);
+            
+            nodesUpdate.select(".node")
+                .attr("r", d => budgetScale(d.budget_allocated))
+                .attr("fill", d => statusColors[d.status] || "#95a5a6")
+                .on("mouseover", function(event, d) {
+                    const content = `
+                        <strong>${d.name}</strong><br/>
+                        Status: ${d.status}<br/>
+                        Budget: ${formatCurrency(d.budget_allocated)}<br/>
+                        Strategic Score: ${d.strategic_score_avg ? d.strategic_score_avg.toFixed(1) : 'N/A'}<br/>
+                        Theme: ${d.portfolio_theme}<br/>
+                        Risk Level: ${d.risk_level}
+                    `;
+                    showTooltip(content, event);
+                })
+                .on("mouseout", hideTooltip);
+            
+            nodesUpdate.select(".node-label")
+                .text(d => d.name.length > 15 ? d.name.substring(0, 15) + "..." : d.name)
+                .attr("fill", "#2c3e50");
+            
+            const drag = d3.drag()
+                .on("start", function(event, d) {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                })
+                .on("drag", function(event, d) {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                })
+                .on("end", function(event, d) {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                });
+            
+            nodesUpdate.call(drag);
+            
+            simulation.nodes(filteredNodes);
+            simulation.force("link").links(processedLinks);
+            
+            simulation.on("tick", function() {
+                linksUpdate
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+                
+                nodesUpdate
+                    .attr("transform", d => `translate(${d.x}, ${d.y})`);
+            });
+            
+            simulation.alpha(1).restart();
+        }
+
+        function createDependencyLegend(svg, width, height) {
+            const legend = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", `translate(${width - 150}, 20)`);
+            
+            legend.append("text")
+                .attr("x", 0)
+                .attr("y", 0)
+                .text("Project Status")
+                .style("font-weight", "bold")
+                .style("font-size", "12px");
+            
+            const statusEntries = Object.entries(statusColors);
+            const statusLegend = legend.selectAll(".status-legend")
+                .data(statusEntries)
+                .enter()
+                .append("g")
+                .attr("class", "status-legend")
+                .attr("transform", (d, i) => `translate(0, ${20 + i * 20})`);
+            
+            statusLegend.append("circle")
+                .attr("r", 6)
+                .attr("fill", d => d[1]);
+            
+            statusLegend.append("text")
+                .attr("x", 12)
+                .attr("y", 0)
+                .attr("dy", "0.35em")
+                .text(d => d[0])
+                .style("font-size", "11px");
+            
+            legend.append("text")
+                .attr("x", 0)
+                .attr("y", 100)
+                .text("Dependency Type")
+                .style("font-weight", "bold")
+                .style("font-size", "12px");
+            
+            const depEntries = Object.entries(dependencyTypeColors);
+            const depLegend = legend.selectAll(".dep-legend")
+                .data(depEntries)
+                .enter()
+                .append("g")
+                .attr("class", "dep-legend")
+                .attr("transform", (d, i) => `translate(0, ${120 + i * 20})`);
+            
+            depLegend.append("line")
+                .attr("x1", 0)
+                .attr("x2", 15)
+                .attr("y1", 0)
+                .attr("y2", 0)
+                .attr("stroke", d => d[1])
+                .attr("stroke-width", 3);
+            
+            depLegend.append("text")
+                .attr("x", 20)
+                .attr("y", 0)
+                .attr("dy", "0.35em")
+                .text(d => d[0])
+                .style("font-size", "11px");
+        }
+
+        // Resource Matrix Implementation
+        function createResourceMatrix() {
+            const container = d3.select("#resource-matrix");
+            const margin = { top: 80, right: 50, bottom: 100, left: 200 };
+            const width = 800 - margin.left - margin.right;
+            const height = 400 - margin.bottom - margin.top;
+            
+            container.selectAll("*").remove();
+            
+            const svg = container.append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+            
+            const g = svg.append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`);
+            
+            const projects = resourceMatrixData.projects;
+            const resources = resourceMatrixData.resources;
+            const matrix = resourceMatrixData.matrix;
+            
+            const xScale = d3.scaleBand()
+                .domain(resources)
+                .range([0, width])
+                .padding(0.05);
+            
+            const yScale = d3.scaleBand()
+                .domain(projects)
+                .range([0, height])
+                .padding(0.05);
+            
+            const maxValue = d3.max(matrix.flat());
+            
+            const colorScale = d3.scaleSequential()
+                .domain([0, maxValue])
+                .interpolator(d3.interpolateBlues);
+            
+            const cells = g.selectAll(".matrix-cell")
+                .data(matrix.flatMap((row, i) => 
+                    row.map((value, j) => ({
+                        project: projects[i],
+                        resource: resources[j],
+                        value: value,
+                        x: j,
+                        y: i
+                    }))
+                ))
+                .enter()
+                .append("rect")
+                .attr("class", "matrix-cell")
+                .attr("x", d => xScale(d.resource))
+                .attr("y", d => yScale(d.project))
+                .attr("width", xScale.bandwidth())
+                .attr("height", yScale.bandwidth())
+                .attr("fill", d => d.value === 0 ? "#f8f9fa" : colorScale(d.value))
+                .on("mouseover", function(event, d) {
+                    const content = `
+                        <strong>Resource Allocation</strong><br/>
+                        Project: ${d.project}<br/>
+                        Resource: ${d.resource}<br/>
+                        Amount: ${d.value > 1000 ? formatCurrency(d.value) : d.value}
+                    `;
+                    showTooltip(content, event);
+                })
+                .on("mouseout", hideTooltip);
+            
+            // Add axis labels
+            g.selectAll(".x-label")
+                .data(resources)
+                .enter()
+                .append("text")
+                .attr("class", "x-label")
+                .attr("x", d => xScale(d) + xScale.bandwidth() / 2)
+                .attr("y", height + 15)
+                .attr("text-anchor", "middle")
+                .style("font-size", "11px")
+                .style("font-weight", "bold")
+                .text(d => d.length > 15 ? d.substring(0, 15) + "..." : d);
+            
+            g.selectAll(".y-label")
+                .data(projects)
+                .enter()
+                .append("text")
+                .attr("class", "y-label")
+                .attr("x", -10)
+                .attr("y", d => yScale(d) + yScale.bandwidth() / 2)
+                .attr("dy", "0.35em")
+                .attr("text-anchor", "end")
+                .style("font-size", "11px")
+                .style("font-weight", "bold")
+                .text(d => d);
+        }
+
+        // Strategic Matrix Implementation
+        function createStrategicMatrix() {
+            const container = d3.select("#strategic-matrix");
+            const margin = { top: 50, right: 150, bottom: 80, left: 80 };
+            const width = 800 - margin.left - margin.right;
+            const height = 500 - margin.top - margin.bottom;
+            
+            container.selectAll("*").remove();
+            
+            const svg = container.append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+            
+            const g = svg.append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`);
+            
+            createStrategicLegend(svg, width, margin);
+            updateStrategicMatrix("all");
+        }
+
+        function updateStrategicMatrix(statusFilter) {
+            const container = d3.select("#strategic-matrix svg g");
+            const width = 800 - 230;
+            const height = 500 - 130;
+            
+            let filteredData = strategicData;
+            if (statusFilter !== "all") {
+                filteredData = strategicData.filter(d => d.status === statusFilter);
+            }
+            
+            const xScale = d3.scaleLinear()
+                .domain(d3.extent(strategicData, d => d.strategic_score_avg))
+                .range([0, width])
+                .nice();
+            
+            const yScale = d3.scaleLinear()
+                .domain(d3.extent(strategicData, d => d.risk_score))
+                .range([height, 0])
+                .nice();
+            
+            const sizeScale = d3.scaleSqrt()
+                .domain(d3.extent(strategicData, d => d.budget_allocated))
+                .range([15, 60]);
+            
+            // Clear previous content
+            container.selectAll("*").remove();
+            
+            // Add axes
+            const xAxis = d3.axisBottom(xScale).ticks(8);
+            const yAxis = d3.axisLeft(yScale).ticks(6);
+            
+            container.append("g")
+                .attr("class", "axis x-axis")
+                .attr("transform", `translate(0, ${height})`)
+                .call(xAxis);
+            
+            container.append("g")
+                .attr("class", "axis y-axis")
+                .call(yAxis);
+            
+            // Add axis labels
+            container.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", `translate(${width / 2}, ${height + 50})`)
+                .style("text-anchor", "middle")
+                .style("font-size", "14px")
+                .style("font-weight", "bold")
+                .text("Strategic Score");
+            
+            container.append("text")
+                .attr("class", "axis-label")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -50)
+                .attr("x", -height / 2)
+                .style("text-anchor", "middle")
+                .style("font-size", "14px")
+                .style("font-weight", "bold")
+                .text("Risk Score");
+            
+            // Add bubbles
+            const bubbles = container.selectAll(".bubble")
+                .data(filteredData)
+                .enter()
+                .append("circle")
+                .attr("class", "bubble")
+                .attr("cx", d => xScale(d.strategic_score_avg))
+                .attr("cy", d => yScale(d.risk_score))
+                .attr("r", d => sizeScale(d.budget_allocated))
+                .attr("fill", d => statusColors[d.status] || "#95a5a6")
+                .attr("opacity", 0.7)
+                .on("mouseover", function(event, d) {
+                    d3.select(this).attr("opacity", 1);
+                    const content = `
+                        <strong>${d.name}</strong><br/>
+                        Status: ${d.status}<br/>
+                        Budget: ${formatCurrency(d.budget_allocated)}<br/>
+                        Strategic Score: ${d.strategic_score_avg.toFixed(1)}<br/>
+                        Risk Score: ${d.risk_score}<br/>
+                        Completion: ${d.completion_percentage}%<br/>
+                        Theme: ${d.portfolio_theme}
+                    `;
+                    showTooltip(content, event);
+                })
+                .on("mouseout", function() {
+                    d3.select(this).attr("opacity", 0.7);
+                    hideTooltip();
+                });
+            
+            // Add labels
+            container.selectAll(".bubble-label")
+                .data(filteredData)
+                .enter()
+                .append("text")
+                .attr("class", "bubble-label")
+                .attr("x", d => xScale(d.strategic_score_avg))
+                .attr("y", d => yScale(d.risk_score) + sizeScale(d.budget_allocated) + 15)
+                .text(d => d.name.length > 12 ? d.name.substring(0, 12) + "..." : d.name)
+                .style("font-size", "10px")
+                .style("font-weight", "bold")
+                .style("fill", "#2c3e50")
+                .style("text-anchor", "middle");
+        }
+
+        function createStrategicLegend(svg, width, margin) {
+            const legend = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", `translate(${width + margin.left - 120}, ${margin.top})`);
+            
+            legend.append("text")
+                .attr("x", 0)
+                .attr("y", 0)
+                .text("Project Status")
+                .style("font-weight", "bold")
+                .style("font-size", "12px");
+            
+            const statusEntries = Object.entries(statusColors);
+            const statusLegend = legend.selectAll(".status-legend")
+                .data(statusEntries)
+                .enter()
+                .append("g")
+                .attr("class", "status-legend")
+                .attr("transform", (d, i) => `translate(0, ${20 + i * 25})`);
+            
+            statusLegend.append("circle")
+                .attr("r", 8)
+                .attr("fill", d => d[1])
+                .attr("opacity", 0.7);
+            
+            statusLegend.append("text")
+                .attr("x", 15)
+                .attr("y", 0)
+                .attr("dy", "0.35em")
+                .text(d => d[0])
+                .style("font-size", "11px");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+allocation_id,project_id,resource_id,allocated_amount,allocation_start,allocation_end,allocation_percentage,priority_level,allocation_status
+ALLOC001,PRJ001,RES001,16,2025-01-15,2025-04-30,40,High,Active
+ALLOC002,PRJ001,RES002,75000,2025-01-15,2025-08-30,15,Medium,Active
+ALLOC003,PRJ002,RES001,8,2025-03-01,2025-06-30,20,Medium,Planned
+ALLOC004,PRJ002,RES004,24,2025-03-01,2025-12-15,75,Critical,Planned
+ALLOC005,PRJ003,RES001,12,2025-02-01,2025-08-31,30,High,Planned
+ALLOC006,PRJ003,RES002,45000,2025-02-01,2025-10-31,9,Medium,Planned
+ALLOC007,PRJ004,RES001,6,2025-06-01,2025-11-30,15,Medium,Planned
+ALLOC008,PRJ004,RES002,25000,2025-06-01,2025-11-30,5,Low,Planned

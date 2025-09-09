@@ -1,0 +1,98 @@
+[
+  {
+    "event_id":"EVT001",
+    "project_id":"PRJ001",
+    "milestone_name":"Requirements Gathering Complete",
+    "event_type":"milestone",
+    "planned_date":"2025-02-15",
+    "actual_date":"2025-02-18",
+    "criticality":"Medium",
+    "predecessor_events":null,
+    "status":"Complete",
+    "notes":"Slight delay due to stakeholder availability"
+  },
+  {
+    "event_id":"EVT002",
+    "project_id":"PRJ001",
+    "milestone_name":"UI\/UX Design Phase",
+    "event_type":"milestone",
+    "planned_date":"2025-03-30",
+    "actual_date":null,
+    "criticality":"High",
+    "predecessor_events":"EVT001",
+    "status":"In Progress",
+    "notes":"Design reviews scheduled weekly"
+  },
+  {
+    "event_id":"EVT003",
+    "project_id":"PRJ002",
+    "milestone_name":"Vendor Selection",
+    "event_type":"milestone",
+    "planned_date":"2025-04-15",
+    "actual_date":null,
+    "criticality":"Critical",
+    "predecessor_events":null,
+    "status":"Planned",
+    "notes":"RFP process initiated"
+  },
+  {
+    "event_id":"EVT004",
+    "project_id":"PRJ001",
+    "milestone_name":"Beta Launch",
+    "event_type":"milestone",
+    "planned_date":"2025-07-15",
+    "actual_date":null,
+    "criticality":"Critical",
+    "predecessor_events":"EVT002",
+    "status":"Planned",
+    "notes":"Customer feedback collection phase"
+  },
+  {
+    "event_id":"EVT005",
+    "project_id":"PRJ003",
+    "milestone_name":"API Design Complete",
+    "event_type":"milestone",
+    "planned_date":"2025-03-15",
+    "actual_date":null,
+    "criticality":"High",
+    "predecessor_events":null,
+    "status":"Planned",
+    "notes":"Technical architecture review"
+  },
+  {
+    "event_id":"EVT006",
+    "project_id":"PRJ003",
+    "milestone_name":"Core API Development",
+    "event_type":"milestone",
+    "planned_date":"2025-06-30",
+    "actual_date":null,
+    "criticality":"Critical",
+    "predecessor_events":"EVT005",
+    "status":"Planned",
+    "notes":"First version of unified API"
+  },
+  {
+    "event_id":"EVT007",
+    "project_id":"PRJ004",
+    "milestone_name":"Mobile App Design",
+    "event_type":"milestone",
+    "planned_date":"2025-07-01",
+    "actual_date":null,
+    "criticality":"Medium",
+    "predecessor_events":"EVT002",
+    "status":"Planned",
+    "notes":"Depends on portal design completion"
+  },
+  {
+    "event_id":"EVT008",
+    "project_id":"PRJ004",
+    "milestone_name":"App Store Submission",
+    "event_type":"milestone",
+    "planned_date":"2025-10-15",
+    "actual_date":null,
+    "criticality":"High",
+    "predecessor_events":"EVT007",
+    "status":"Planned",
+    "notes":"iOS and Android submission"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "dependency_id":"DEP001",
+    "source_project_id":"PRJ001",
+    "target_project_id":"PRJ002",
+    "dependency_type":"resource",
+    "dependency_strength":4,
+    "dependency_direction":"unidirectional",
+    "impact_if_broken":"High",
+    "status":"Active",
+    "created_date":"2025-01-10",
+    "notes":"Shared data architecture team",
+    "source_name":"Customer Portal Redesign",
+    "target_name":"Supply Chain Optimization"
+  },
+  {
+    "dependency_id":"DEP002",
+    "source_project_id":"PRJ002",
+    "target_project_id":"PRJ003",
+    "dependency_type":"technical",
+    "dependency_strength":5,
+    "dependency_direction":"bidirectional",
+    "impact_if_broken":"Critical",
+    "status":"Active",
+    "created_date":"2025-01-20",
+    "notes":"Common API infrastructure",
+    "source_name":"Supply Chain Optimization",
+    "target_name":"API Platform Development"
+  },
+  {
+    "dependency_id":"DEP003",
+    "source_project_id":"PRJ001",
+    "target_project_id":"PRJ004",
+    "dependency_type":"timeline",
+    "dependency_strength":3,
+    "dependency_direction":"unidirectional",
+    "impact_if_broken":"Medium",
+    "status":"Active",
+    "created_date":"2025-02-01",
+    "notes":"Portal must be ready before launch",
+    "source_name":"Customer Portal Redesign",
+    "target_name":"Mobile App Launch"
+  }
+]

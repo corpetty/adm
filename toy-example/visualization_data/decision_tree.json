@@ -1,0 +1,154 @@
+{
+  "name": "Portfolio Investment Decision",
+  "type": "decision",
+  "projects": [],
+  "project_count": 0,
+  "question": "What is the strategic priority of the project?",
+  "children": [
+    {
+      "name": "High/Critical Priority",
+      "type": "decision",
+      "projects": [],
+      "project_count": 0,
+      "question": "What is the risk level?",
+      "children": [
+        {
+          "name": "Low Risk (\u22645)",
+          "type": "decision",
+          "projects": [],
+          "project_count": 0,
+          "question": "What is the budget requirement?",
+          "children": [
+            {
+              "name": "High Budget (\u2265$300K)",
+              "type": "outcome",
+              "projects": [
+                {
+                  "id": "PRJ003",
+                  "name": "API Platform Development",
+                  "budget": 320000,
+                  "strategic_score": 7.8,
+                  "risk_score": 5,
+                  "roi": 1.6,
+                  "status": "Planning",
+                  "priority": "High"
+                }
+              ],
+              "project_count": 1,
+              "recommendation": "PROCEED WITH CAUTION",
+              "reasoning": "High strategic value but significant investment. Ensure strong governance and milestone tracking."
+            },
+            {
+              "name": "Low Budget (<$300K)",
+              "type": "outcome",
+              "projects": [
+                {
+                  "id": "PRJ001",
+                  "name": "Customer Portal Redesign",
+                  "budget": 250000,
+                  "strategic_score": 8.0,
+                  "risk_score": 4,
+                  "roi": 1.2,
+                  "status": "Active",
+                  "priority": "High"
+                }
+              ],
+              "project_count": 1,
+              "recommendation": "STRONGLY RECOMMEND",
+              "reasoning": "High strategic value, low risk, manageable budget. Ideal portfolio addition."
+            }
+          ]
+        },
+        {
+          "name": "High Risk (>5)",
+          "type": "decision",
+          "projects": [],
+          "project_count": 0,
+          "question": "Is the strategic score high (\u22658.0)?",
+          "children": [
+            {
+              "name": "High Strategic Score",
+              "type": "outcome",
+              "projects": [
+                {
+                  "id": "PRJ002",
+                  "name": "Supply Chain Optimization",
+                  "budget": 450000,
+                  "strategic_score": 8.6,
+                  "risk_score": 8,
+                  "roi": 2.1,
+                  "status": "Planning",
+                  "priority": "Critical"
+                }
+              ],
+              "project_count": 1,
+              "recommendation": "CONDITIONAL APPROVAL",
+              "reasoning": "High strategic value justifies risk. Implement strong risk mitigation strategies."
+            },
+            {
+              "name": "Lower Strategic Score",
+              "type": "outcome",
+              "projects": [],
+              "project_count": 0,
+              "recommendation": "DEFER OR REDESIGN",
+              "reasoning": "High risk without sufficient strategic justification. Consider alternatives or risk reduction."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Medium/Low Priority",
+      "type": "decision",
+      "projects": [],
+      "project_count": 0,
+      "question": "Is the projected ROI attractive (\u22651.5)?",
+      "children": [
+        {
+          "name": "High ROI (\u22651.5)",
+          "type": "decision",
+          "projects": [],
+          "project_count": 0,
+          "question": "What is the risk level?",
+          "children": [
+            {
+              "name": "Low Risk (\u22644)",
+              "type": "outcome",
+              "projects": [],
+              "project_count": 0,
+              "recommendation": "RECOMMEND",
+              "reasoning": "Good financial returns with manageable risk. Solid portfolio addition."
+            },
+            {
+              "name": "Higher Risk (>4)",
+              "type": "outcome",
+              "projects": [],
+              "project_count": 0,
+              "recommendation": "EVALUATE ALTERNATIVES",
+              "reasoning": "Good ROI but elevated risk. Compare with other opportunities."
+            }
+          ]
+        },
+        {
+          "name": "Lower ROI (<1.5)",
+          "type": "outcome",
+          "projects": [
+            {
+              "id": "PRJ004",
+              "name": "Mobile App Launch",
+              "budget": 180000,
+              "strategic_score": 7.4,
+              "risk_score": 3,
+              "roi": 1.4,
+              "status": "Planning",
+              "priority": "Medium"
+            }
+          ],
+          "project_count": 1,
+          "recommendation": "DO NOT RECOMMEND",
+          "reasoning": "Limited strategic priority and poor financial returns. Resources better allocated elsewhere."
+        }
+      ]
+    }
+  ]
+}

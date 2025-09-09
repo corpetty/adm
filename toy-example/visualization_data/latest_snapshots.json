@@ -1,0 +1,22 @@
+[
+  {
+    "snapshot_date":"2025-09-01",
+    "project_id":"PRJ001",
+    "budget_spent_cumulative":75000,
+    "completion_percentage":30,
+    "resource_utilization":0.85,
+    "risk_score":4,
+    "team_velocity":7.2,
+    "milestone_adherence":0.92
+  },
+  {
+    "snapshot_date":"2025-09-01",
+    "project_id":"PRJ002",
+    "budget_spent_cumulative":15000,
+    "completion_percentage":5,
+    "resource_utilization":0.65,
+    "risk_score":8,
+    "team_velocity":4.1,
+    "milestone_adherence":1.0
+  }
+]

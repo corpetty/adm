@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "project_id": "PRJ001",
+      "name": "Customer Portal Redesign",
+      "budget_allocated": 250000,
+      "strategic_score_avg": 8.0,
+      "status": "Active",
+      "portfolio_theme": "Digital Transformation",
+      "risk_level": "Medium"
+    },
+    {
+      "project_id": "PRJ002",
+      "name": "Supply Chain Optimization",
+      "budget_allocated": 450000,
+      "strategic_score_avg": 8.6,
+      "status": "Planning",
+      "portfolio_theme": "Operational Excellence",
+      "risk_level": "High"
+    },
+    {
+      "project_id": "PRJ003",
+      "name": "API Platform Development",
+      "budget_allocated": 320000,
+      "strategic_score_avg": 7.8,
+      "status": "Planning",
+      "portfolio_theme": "Digital Transformation",
+      "risk_level": "Medium"
+    },
+    {
+      "project_id": "PRJ004",
+      "name": "Mobile App Launch",
+      "budget_allocated": 180000,
+      "strategic_score_avg": 7.4,
+      "status": "Planning",
+      "portfolio_theme": "Digital Transformation",
+      "risk_level": "Low"
+    }
+  ],
+  "links": [
+    {
+      "source_project_id": "PRJ001",
+      "target_project_id": "PRJ002",
+      "dependency_type": "resource",
+      "dependency_strength": 4,
+      "impact_if_broken": "High"
+    },
+    {
+      "source_project_id": "PRJ002",
+      "target_project_id": "PRJ003",
+      "dependency_type": "technical",
+      "dependency_strength": 5,
+      "impact_if_broken": "Critical"
+    },
+    {
+      "source_project_id": "PRJ001",
+      "target_project_id": "PRJ004",
+      "dependency_type": "timeline",
+      "dependency_strength": 3,
+      "impact_if_broken": "Medium"
+    }
+  ]
+}

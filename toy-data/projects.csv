@@ -1,0 +1,5 @@
+project_id,name,description,status,start_date,end_date,budget_allocated,budget_spent,strategic_priority,risk_level,completion_percentage,portfolio_theme,project_manager,business_unit,created_date,last_updated
+PRJ001,Customer Portal Redesign,Modernize customer-facing web portal,Active,2025-01-15,2025-08-30,250000,75000,High,Medium,30,Digital Transformation,Sarah Chen,IT,2024-12-01,2025-09-09
+PRJ002,Supply Chain Optimization,Implement AI-driven logistics,Planning,2025-03-01,2025-12-15,450000,0,Critical,High,0,Operational Excellence,Mike Rodriguez,Operations,2024-11-15,2025-09-09
+PRJ003,API Platform Development,Build unified API infrastructure,Planning,2025-02-01,2025-10-31,320000,0,High,Medium,0,Digital Transformation,Alex Kim,IT,2024-12-15,2025-09-09
+PRJ004,Mobile App Launch,Launch customer mobile application,Planning,2025-06-01,2025-11-30,180000,0,Medium,Low,0,Digital Transformation,Lisa Wang,Product,2025-01-05,2025-09-09

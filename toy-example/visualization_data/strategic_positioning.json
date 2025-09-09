@@ -1,0 +1,42 @@
+[
+  {
+    "project_id": "PRJ001",
+    "name": "Customer Portal Redesign",
+    "budget_allocated": 250000,
+    "strategic_score_avg": 8.0,
+    "risk_score": 4,
+    "completion_percentage": 30,
+    "status": "Active",
+    "portfolio_theme": "Digital Transformation"
+  },
+  {
+    "project_id": "PRJ002",
+    "name": "Supply Chain Optimization",
+    "budget_allocated": 450000,
+    "strategic_score_avg": 8.6,
+    "risk_score": 8,
+    "completion_percentage": 0,
+    "status": "Planning",
+    "portfolio_theme": "Operational Excellence"
+  },
+  {
+    "project_id": "PRJ003",
+    "name": "API Platform Development",
+    "budget_allocated": 320000,
+    "strategic_score_avg": 7.8,
+    "risk_score": 5,
+    "completion_percentage": 0,
+    "status": "Planning",
+    "portfolio_theme": "Digital Transformation"
+  },
+  {
+    "project_id": "PRJ004",
+    "name": "Mobile App Launch",
+    "budget_allocated": 180000,
+    "strategic_score_avg": 7.4,
+    "risk_score": 3,
+    "completion_percentage": 0,
+    "status": "Planning",
+    "portfolio_theme": "Digital Transformation"
+  }
+]

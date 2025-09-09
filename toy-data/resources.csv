@@ -1,0 +1,5 @@
+resource_id,resource_name,resource_type,total_capacity,unit_cost,skills_specifications,department,availability_status
+RES001,Senior Developer Team Alpha,human,40,150,React|Node.js|AWS|PostgreSQL,Engineering,Available
+RES002,Cloud Infrastructure Budget,financial,500000,1,AWS|Azure|Infrastructure,IT,Available
+RES003,QA Testing Lab,facility,1,2000,Automated Testing|Performance Testing,Quality Assurance,Reserved
+RES004,Data Science Team,human,32,175,Python|ML|Statistics|BigQuery,Analytics,Overallocated

@@ -1,0 +1,4 @@
+dependency_id,source_project_id,target_project_id,dependency_type,dependency_strength,dependency_direction,impact_if_broken,status,created_date,notes
+DEP001,PRJ001,PRJ002,resource,4,unidirectional,High,Active,2025-01-10,Shared data architecture team
+DEP002,PRJ002,PRJ003,technical,5,bidirectional,Critical,Active,2025-01-20,Common API infrastructure
+DEP003,PRJ001,PRJ004,timeline,3,unidirectional,Medium,Active,2025-02-01,Portal must be ready before launch

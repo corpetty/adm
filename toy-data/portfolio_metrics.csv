@@ -1,0 +1,4 @@
+metric_date,total_projects,active_projects,total_budget,budget_spent,portfolio_risk_score,strategic_alignment_avg,completion_avg,overallocated_resources,critical_dependencies
+2025-09-01,15,12,2750000,890000,6.2,7.8,42,3,8
+2025-08-01,15,11,2750000,650000,5.8,7.6,38,2,9
+2025-07-01,14,10,2500000,450000,5.5,7.4,32,1,7

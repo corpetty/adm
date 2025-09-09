@@ -1,0 +1,3 @@
+snapshot_date,project_id,budget_spent_cumulative,completion_percentage,resource_utilization,risk_score,team_velocity,milestone_adherence
+2025-09-01,PRJ001,75000,30,0.85,4,7.2,0.92
+2025-09-01,PRJ002,15000,5,0.65,8,4.1,1.0

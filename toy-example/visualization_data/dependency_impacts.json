@@ -1,0 +1,35 @@
+[
+  {
+    "impact_id":"IMP001",
+    "source_project_id":"PRJ002",
+    "target_project_id":"PRJ001",
+    "impact_type":"delay",
+    "impact_magnitude":0.3,
+    "cascade_depth":2,
+    "affected_projects_list":"PRJ001|PRJ004|PRJ007",
+    "risk_multiplier":1.4,
+    "mitigation_status":"Partial"
+  },
+  {
+    "impact_id":"IMP002",
+    "source_project_id":"PRJ001",
+    "target_project_id":"PRJ003",
+    "impact_type":"resource_conflict",
+    "impact_magnitude":0.6,
+    "cascade_depth":1,
+    "affected_projects_list":"PRJ003",
+    "risk_multiplier":1.8,
+    "mitigation_status":null
+  },
+  {
+    "impact_id":"IMP003",
+    "source_project_id":"PRJ005",
+    "target_project_id":"PRJ002",
+    "impact_type":"budget_reduction",
+    "impact_magnitude":0.4,
+    "cascade_depth":3,
+    "affected_projects_list":"PRJ002|PRJ006|PRJ008",
+    "risk_multiplier":1.6,
+    "mitigation_status":"In Progress"
+  }
+]

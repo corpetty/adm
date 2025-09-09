@@ -1,0 +1,42 @@
+[
+  {
+    "resource_id":"RES001",
+    "resource_name":"Senior Developer Team Alpha",
+    "resource_type":"human",
+    "total_capacity":40,
+    "unit_cost":150,
+    "skills_specifications":"React|Node.js|AWS|PostgreSQL",
+    "department":"Engineering",
+    "availability_status":"Available"
+  },
+  {
+    "resource_id":"RES002",
+    "resource_name":"Cloud Infrastructure Budget",
+    "resource_type":"financial",
+    "total_capacity":500000,
+    "unit_cost":1,
+    "skills_specifications":"AWS|Azure|Infrastructure",
+    "department":"IT",
+    "availability_status":"Available"
+  },
+  {
+    "resource_id":"RES003",
+    "resource_name":"QA Testing Lab",
+    "resource_type":"facility",
+    "total_capacity":1,
+    "unit_cost":2000,
+    "skills_specifications":"Automated Testing|Performance Testing",
+    "department":"Quality Assurance",
+    "availability_status":"Reserved"
+  },
+  {
+    "resource_id":"RES004",
+    "resource_name":"Data Science Team",
+    "resource_type":"human",
+    "total_capacity":32,
+    "unit_cost":175,
+    "skills_specifications":"Python|ML|Statistics|BigQuery",
+    "department":"Analytics",
+    "availability_status":"Overallocated"
+  }
+]

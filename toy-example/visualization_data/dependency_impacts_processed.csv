@@ -1,0 +1,4 @@
+impact_id,source_project_id,target_project_id,impact_type,impact_magnitude,cascade_depth,affected_projects_list,risk_multiplier,mitigation_status
+IMP001,PRJ002,PRJ001,delay,0.3,2,PRJ001|PRJ004|PRJ007,1.4,Partial
+IMP002,PRJ001,PRJ003,resource_conflict,0.6,1,PRJ003,1.8,
+IMP003,PRJ005,PRJ002,budget_reduction,0.4,3,PRJ002|PRJ006|PRJ008,1.6,In Progress
