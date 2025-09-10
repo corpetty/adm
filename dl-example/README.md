@@ -192,6 +192,8 @@ P = {x ∈ ℝⁿ : A_ineq * x ≤ b_ineq, A_eq * x = b_eq}
 
 This polytope represents the feasible region for project values that satisfy all expert evaluations.
 
+NOTE: you can get an intro to convex polytopes [here](https://www.youtube.com/watch?v=WnbwksaN0O0)
+
 ### Variable Indexing
 
 For `n` projects and `m` criteria, variables are indexed as:
