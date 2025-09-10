@@ -211,29 +211,6 @@ We welcome contributions to improve the portfolio management system:
 - **Visualization Patterns** - Review `toy-example/visualization-options.md` for design guidance
 - **Sample Data** - Use `toy-data/` files as templates for your own data
 
-## Future Roadmap
-
-### Short Term (3-6 months)
-
-- **Enhanced Interactivity** - More sophisticated filtering and drill-down capabilities
-- **Performance Optimization** - Support for larger portfolios (1000+ projects)
-- **Export Features** - PDF reports and data export functionality
-- **Mobile Optimization** - Touch-friendly interfaces for mobile devices
-
-### Medium Term (6-12 months)
-
-- **Real-time Integration** - Live data feeds from project management systems
-- **Advanced Analytics** - Machine learning models for predictive insights
-- **Collaboration Features** - Shared workspaces and commenting systems
-- **API Development** - RESTful APIs for custom integrations
-
-### Long Term (12+ months)
-
-- **AI-Powered Insights** - Automated recommendations and anomaly detection
-- **Enterprise Features** - Role-based access control and audit trails
-- **Cloud Platform** - Hosted solution with scalable infrastructure
-- **Industry Templates** - Pre-configured setups for different sectors
-
 ## License
 
 This project is provided as an open-source educational resource for portfolio management and data visualization techniques.
