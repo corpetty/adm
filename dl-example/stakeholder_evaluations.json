@@ -1,0 +1,217 @@
+[
+  {
+    "evaluator_id": "CEO_Logos",
+    "evaluation_type": "ranking",
+    "projects": [
+      "Logos Core Infrastructure",
+      "Status Mobile Application",
+      "Nimbus Ethereum 2.0 Client",
+      "Decentralized Finance Infrastructure"
+    ],
+    "operator": null,
+    "values": null,
+    "confidence": 0.95,
+    "criteria": "strategic_value",
+    "timestamp": null,
+    "metadata": {
+      "role": "executive",
+      "focus": "strategic_alignment"
+    }
+  },
+  {
+    "evaluator_id": "CEO_Logos",
+    "evaluation_type": "threshold",
+    "projects": [
+      "Status Network Infrastructure"
+    ],
+    "operator": ">=",
+    "values": [
+      0.85
+    ],
+    "confidence": 0.9,
+    "criteria": "strategic_value",
+    "timestamp": null,
+    "metadata": {
+      "role": "executive",
+      "rationale": "critical_for_ecosystem"
+    }
+  },
+  {
+    "evaluator_id": "CTO_Technical",
+    "evaluation_type": "comparison",
+    "projects": [
+      "Advanced Cryptography Research",
+      "Nomos Consensus Layer"
+    ],
+    "operator": ">",
+    "values": null,
+    "confidence": 0.85,
+    "criteria": "technical_complexity",
+    "timestamp": null,
+    "metadata": {
+      "role": "technical",
+      "focus": "innovation"
+    }
+  },
+  {
+    "evaluator_id": "CTO_Technical",
+    "evaluation_type": "range",
+    "projects": [
+      "Nimbus Light Client"
+    ],
+    "operator": null,
+    "values": [
+      0.6,
+      0.8
+    ],
+    "confidence": 0.8,
+    "criteria": "technical_complexity",
+    "timestamp": null,
+    "metadata": {
+      "role": "technical",
+      "rationale": "moderate_complexity"
+    }
+  },
+  {
+    "evaluator_id": "CFO_Finance",
+    "evaluation_type": "comparison",
+    "projects": [
+      "Status Network Infrastructure",
+      "Status Keycard Hardware"
+    ],
+    "operator": ">",
+    "values": null,
+    "confidence": 0.9,
+    "criteria": "resource_requirement",
+    "timestamp": null,
+    "metadata": {
+      "role": "financial",
+      "focus": "resource_optimization"
+    }
+  },
+  {
+    "evaluator_id": "CFO_Finance",
+    "evaluation_type": "threshold",
+    "projects": [
+      "Waku Communication Protocol"
+    ],
+    "operator": "<=",
+    "values": [
+      0.75
+    ],
+    "confidence": 0.85,
+    "criteria": "resource_requirement",
+    "timestamp": null,
+    "metadata": {
+      "role": "financial",
+      "rationale": "budget_constraint"
+    }
+  },
+  {
+    "evaluator_id": "PM_Product",
+    "evaluation_type": "ranking",
+    "projects": [
+      "Status Mobile Application",
+      "Nimbus Ethereum 2.0 Client",
+      "Decentralized Finance Infrastructure"
+    ],
+    "operator": null,
+    "values": null,
+    "confidence": 0.88,
+    "criteria": "market_impact",
+    "timestamp": null,
+    "metadata": {
+      "role": "product",
+      "focus": "user_adoption"
+    }
+  },
+  {
+    "evaluator_id": "PM_Product",
+    "evaluation_type": "range",
+    "projects": [
+      "Portal Network Implementation"
+    ],
+    "operator": null,
+    "values": [
+      0.7,
+      0.8
+    ],
+    "confidence": 0.75,
+    "criteria": "market_impact",
+    "timestamp": null,
+    "metadata": {
+      "role": "product",
+      "rationale": "niche_but_important"
+    }
+  },
+  {
+    "evaluator_id": "Research_Director",
+    "evaluation_type": "comparison",
+    "projects": [
+      "Zero-Knowledge Proof Systems",
+      "Advanced Cryptography Research"
+    ],
+    "operator": "=",
+    "values": null,
+    "confidence": 0.92,
+    "criteria": "innovation_level",
+    "timestamp": null,
+    "metadata": {
+      "role": "research",
+      "focus": "breakthrough_potential"
+    }
+  },
+  {
+    "evaluator_id": "Research_Director",
+    "evaluation_type": "threshold",
+    "projects": [
+      "Nomos Consensus Layer"
+    ],
+    "operator": ">=",
+    "values": [
+      0.9
+    ],
+    "confidence": 0.88,
+    "criteria": "innovation_level",
+    "timestamp": null,
+    "metadata": {
+      "role": "research",
+      "rationale": "novel_consensus"
+    }
+  },
+  {
+    "evaluator_id": "Community_Rep",
+    "evaluation_type": "comparison",
+    "projects": [
+      "Status Mobile Application",
+      "Status Desktop Application"
+    ],
+    "operator": ">",
+    "values": null,
+    "confidence": 0.8,
+    "criteria": "market_impact",
+    "timestamp": null,
+    "metadata": {
+      "role": "community",
+      "focus": "user_experience"
+    }
+  },
+  {
+    "evaluator_id": "Community_Rep",
+    "evaluation_type": "ranking",
+    "projects": [
+      "Waku Communication Protocol",
+      "Status Keycard Hardware",
+      "Nimbus Light Client"
+    ],
+    "operator": null,
+    "values": null,
+    "confidence": 0.75,
+    "criteria": "strategic_value",
+    "timestamp": null,
+    "metadata": {
+      "role": "community",
+      "focus": "ecosystem_value"
+    }
+  }
+]

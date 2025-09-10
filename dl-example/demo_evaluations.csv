@@ -1,0 +1,3 @@
+evaluator_id,evaluation_type,projects,operator,values,confidence,criteria,timestamp,metadata
+expert_1,comparison,"ProjectA,ProjectB",>,,0.8,,,{}
+expert_2,range,ProjectC,,"0.3,0.7",0.9,,,{}

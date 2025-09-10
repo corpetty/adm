@@ -1,0 +1,32 @@
+[
+  {
+    "evaluator_id": "expert_1",
+    "evaluation_type": "comparison",
+    "projects": [
+      "ProjectA",
+      "ProjectB"
+    ],
+    "operator": ">",
+    "values": null,
+    "confidence": 0.8,
+    "criteria": null,
+    "timestamp": null,
+    "metadata": null
+  },
+  {
+    "evaluator_id": "expert_2",
+    "evaluation_type": "range",
+    "projects": [
+      "ProjectC"
+    ],
+    "operator": null,
+    "values": [
+      0.3,
+      0.7
+    ],
+    "confidence": 0.9,
+    "criteria": null,
+    "timestamp": null,
+    "metadata": null
+  }
+]

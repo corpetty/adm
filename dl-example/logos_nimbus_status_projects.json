@@ -1,0 +1,716 @@
+{
+  "metadata": {
+    "generated_date": "2025-09-10T15:00:30.614702",
+    "total_projects": 16,
+    "ecosystems": [
+      "logos",
+      "nimbus",
+      "status",
+      "ift",
+      "vac"
+    ],
+    "total_budget": 49.6,
+    "description": "Mock project data for Logos/Nimbus/Status ecosystem portfolio selection"
+  },
+  "projects": [
+    {
+      "project_id": "LOGOS_CORE_001",
+      "name": "Logos Core Infrastructure",
+      "description": "Core blockchain infrastructure for the Logos network",
+      "ecosystem": "logos",
+      "construction_duration": 18,
+      "construction_cost": 2.5,
+      "strategic_value": 0.95,
+      "technical_complexity": 0.85,
+      "market_impact": 0.8,
+      "resource_requirement": 0.9,
+      "innovation_level": 0.88,
+      "cooperation_projects": [
+        "LOGOS_CODEX_001",
+        "LOGOS_NOMOS_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [
+        "NIMBUS_ETH2_001"
+      ],
+      "annual_budget_distribution": {
+        "2024": 0.8,
+        "2025": 1.2,
+        "2026": 0.5
+      },
+      "start_date": "2024-01-15",
+      "end_date": "2025-07-15",
+      "team_size": 12,
+      "technology_stack": [
+        "Rust",
+        "Nim",
+        "Go",
+        "Blockchain"
+      ],
+      "risk_factors": [
+        "Technical complexity",
+        "Market adoption",
+        "Regulatory uncertainty"
+      ],
+      "success_metrics": [
+        "Network throughput",
+        "Developer adoption",
+        "Transaction volume"
+      ]
+    },
+    {
+      "project_id": "LOGOS_CODEX_001",
+      "name": "Codex Decentralized Storage",
+      "description": "Decentralized storage network with erasure coding",
+      "ecosystem": "logos",
+      "construction_duration": 24,
+      "construction_cost": 3.2,
+      "strategic_value": 0.88,
+      "technical_complexity": 0.92,
+      "market_impact": 0.85,
+      "resource_requirement": 0.85,
+      "innovation_level": 0.9,
+      "cooperation_projects": [
+        "LOGOS_CORE_001",
+        "LOGOS_WAKU_001"
+      ],
+      "precedence_projects": [
+        "LOGOS_CORE_001"
+      ],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 1.0,
+        "2025": 1.5,
+        "2026": 0.7
+      },
+      "start_date": "2024-03-01",
+      "end_date": "2026-03-01",
+      "team_size": 15,
+      "technology_stack": [
+        "Nim",
+        "libp2p",
+        "Erasure Coding",
+        "IPFS"
+      ],
+      "risk_factors": [
+        "Storage economics",
+        "Network effects",
+        "Competition"
+      ],
+      "success_metrics": [
+        "Storage capacity",
+        "Retrieval speed",
+        "Cost efficiency"
+      ]
+    },
+    {
+      "project_id": "LOGOS_NOMOS_001",
+      "name": "Nomos Consensus Layer",
+      "description": "Novel consensus mechanism for high throughput",
+      "ecosystem": "logos",
+      "construction_duration": 20,
+      "construction_cost": 2.8,
+      "strategic_value": 0.92,
+      "technical_complexity": 0.95,
+      "market_impact": 0.75,
+      "resource_requirement": 0.8,
+      "innovation_level": 0.95,
+      "cooperation_projects": [
+        "LOGOS_CORE_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [
+        "NIMBUS_ETH1_001"
+      ],
+      "annual_budget_distribution": {
+        "2024": 0.9,
+        "2025": 1.3,
+        "2026": 0.6
+      },
+      "start_date": "2024-02-01",
+      "end_date": "2025-10-01",
+      "team_size": 10,
+      "technology_stack": [
+        "Rust",
+        "Cryptography",
+        "Consensus Algorithms"
+      ],
+      "risk_factors": [
+        "Theoretical validation",
+        "Security audits",
+        "Academic acceptance"
+      ],
+      "success_metrics": [
+        "Transaction throughput",
+        "Finality time",
+        "Security guarantees"
+      ]
+    },
+    {
+      "project_id": "LOGOS_WAKU_001",
+      "name": "Waku Communication Protocol",
+      "description": "Privacy-preserving communication layer",
+      "ecosystem": "logos",
+      "construction_duration": 16,
+      "construction_cost": 1.8,
+      "strategic_value": 0.85,
+      "technical_complexity": 0.75,
+      "market_impact": 0.9,
+      "resource_requirement": 0.7,
+      "innovation_level": 0.82,
+      "cooperation_projects": [
+        "LOGOS_CODEX_001",
+        "STATUS_APP_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 0.7,
+        "2025": 0.8,
+        "2026": 0.3
+      },
+      "start_date": "2024-01-01",
+      "end_date": "2025-05-01",
+      "team_size": 8,
+      "technology_stack": [
+        "Go",
+        "libp2p",
+        "Cryptography",
+        "P2P"
+      ],
+      "risk_factors": [
+        "Privacy regulations",
+        "Scalability",
+        "Adoption"
+      ],
+      "success_metrics": [
+        "Message throughput",
+        "Privacy guarantees",
+        "Network size"
+      ]
+    },
+    {
+      "project_id": "NIMBUS_ETH2_001",
+      "name": "Nimbus Ethereum 2.0 Client",
+      "description": "Lightweight Ethereum 2.0 consensus client",
+      "ecosystem": "nimbus",
+      "construction_duration": 22,
+      "construction_cost": 3.5,
+      "strategic_value": 0.9,
+      "technical_complexity": 0.88,
+      "market_impact": 0.95,
+      "resource_requirement": 0.85,
+      "innovation_level": 0.8,
+      "cooperation_projects": [
+        "NIMBUS_LIGHT_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [
+        "LOGOS_CORE_001"
+      ],
+      "annual_budget_distribution": {
+        "2024": 1.2,
+        "2025": 1.5,
+        "2026": 0.8
+      },
+      "start_date": "2024-01-01",
+      "end_date": "2025-11-01",
+      "team_size": 18,
+      "technology_stack": [
+        "Nim",
+        "Ethereum",
+        "Consensus",
+        "Networking"
+      ],
+      "risk_factors": [
+        "Ethereum roadmap changes",
+        "Competition",
+        "Resource constraints"
+      ],
+      "success_metrics": [
+        "Validator adoption",
+        "Performance benchmarks",
+        "Stability metrics"
+      ]
+    },
+    {
+      "project_id": "NIMBUS_ETH1_001",
+      "name": "Nimbus Ethereum 1.0 Client",
+      "description": "Execution layer client for Ethereum",
+      "ecosystem": "nimbus",
+      "construction_duration": 18,
+      "construction_cost": 2.2,
+      "strategic_value": 0.75,
+      "technical_complexity": 0.8,
+      "market_impact": 0.7,
+      "resource_requirement": 0.75,
+      "innovation_level": 0.65,
+      "cooperation_projects": [
+        "NIMBUS_ETH2_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [
+        "LOGOS_NOMOS_001"
+      ],
+      "annual_budget_distribution": {
+        "2024": 0.8,
+        "2025": 1.0,
+        "2026": 0.4
+      },
+      "start_date": "2024-02-15",
+      "end_date": "2025-08-15",
+      "team_size": 12,
+      "technology_stack": [
+        "Nim",
+        "EVM",
+        "Networking",
+        "State Management"
+      ],
+      "risk_factors": [
+        "Merge timeline",
+        "Technical debt",
+        "Maintenance burden"
+      ],
+      "success_metrics": [
+        "Sync speed",
+        "Memory usage",
+        "Transaction processing"
+      ]
+    },
+    {
+      "project_id": "NIMBUS_LIGHT_001",
+      "name": "Nimbus Light Client",
+      "description": "Ultra-lightweight client for mobile and IoT",
+      "ecosystem": "nimbus",
+      "construction_duration": 14,
+      "construction_cost": 1.5,
+      "strategic_value": 0.82,
+      "technical_complexity": 0.7,
+      "market_impact": 0.88,
+      "resource_requirement": 0.6,
+      "innovation_level": 0.85,
+      "cooperation_projects": [
+        "NIMBUS_ETH2_001",
+        "STATUS_APP_001"
+      ],
+      "precedence_projects": [
+        "NIMBUS_ETH2_001"
+      ],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 0.5,
+        "2025": 0.7,
+        "2026": 0.3
+      },
+      "start_date": "2024-06-01",
+      "end_date": "2025-08-01",
+      "team_size": 6,
+      "technology_stack": [
+        "Nim",
+        "Light Client Protocol",
+        "Mobile",
+        "Optimization"
+      ],
+      "risk_factors": [
+        "Protocol changes",
+        "Mobile constraints",
+        "Battery optimization"
+      ],
+      "success_metrics": [
+        "Resource usage",
+        "Sync time",
+        "Mobile adoption"
+      ]
+    },
+    {
+      "project_id": "NIMBUS_PORTAL_001",
+      "name": "Portal Network Implementation",
+      "description": "Distributed state and history network",
+      "ecosystem": "nimbus",
+      "construction_duration": 26,
+      "construction_cost": 2.8,
+      "strategic_value": 0.85,
+      "technical_complexity": 0.9,
+      "market_impact": 0.75,
+      "resource_requirement": 0.8,
+      "innovation_level": 0.88,
+      "cooperation_projects": [
+        "NIMBUS_LIGHT_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 0.8,
+        "2025": 1.2,
+        "2026": 0.8
+      },
+      "start_date": "2024-04-01",
+      "end_date": "2026-06-01",
+      "team_size": 10,
+      "technology_stack": [
+        "Nim",
+        "DHT",
+        "Networking",
+        "State Management"
+      ],
+      "risk_factors": [
+        "Network adoption",
+        "Data availability",
+        "Incentive design"
+      ],
+      "success_metrics": [
+        "Network coverage",
+        "Data availability",
+        "Query performance"
+      ]
+    },
+    {
+      "project_id": "STATUS_APP_001",
+      "name": "Status Mobile Application",
+      "description": "Decentralized messaging and Web3 browser",
+      "ecosystem": "status",
+      "construction_duration": 20,
+      "construction_cost": 4.2,
+      "strategic_value": 0.95,
+      "technical_complexity": 0.85,
+      "market_impact": 0.92,
+      "resource_requirement": 0.9,
+      "innovation_level": 0.8,
+      "cooperation_projects": [
+        "STATUS_KEYCARD_001",
+        "LOGOS_WAKU_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 1.5,
+        "2025": 1.8,
+        "2026": 0.9
+      },
+      "start_date": "2024-01-01",
+      "end_date": "2025-09-01",
+      "team_size": 25,
+      "technology_stack": [
+        "React Native",
+        "ClojureScript",
+        "Ethereum",
+        "IPFS"
+      ],
+      "risk_factors": [
+        "App store policies",
+        "User adoption",
+        "Regulatory compliance"
+      ],
+      "success_metrics": [
+        "Daily active users",
+        "Message volume",
+        "DApp usage"
+      ]
+    },
+    {
+      "project_id": "STATUS_DESKTOP_001",
+      "name": "Status Desktop Application",
+      "description": "Desktop version of Status with enhanced features",
+      "ecosystem": "status",
+      "construction_duration": 16,
+      "construction_cost": 2.8,
+      "strategic_value": 0.8,
+      "technical_complexity": 0.75,
+      "market_impact": 0.7,
+      "resource_requirement": 0.75,
+      "innovation_level": 0.7,
+      "cooperation_projects": [
+        "STATUS_APP_001"
+      ],
+      "precedence_projects": [
+        "STATUS_APP_001"
+      ],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 1.0,
+        "2025": 1.2,
+        "2026": 0.6
+      },
+      "start_date": "2024-04-01",
+      "end_date": "2025-08-01",
+      "team_size": 15,
+      "technology_stack": [
+        "Qt",
+        "Nim",
+        "React",
+        "Ethereum"
+      ],
+      "risk_factors": [
+        "Platform fragmentation",
+        "Feature parity",
+        "Resource allocation"
+      ],
+      "success_metrics": [
+        "User adoption",
+        "Feature completeness",
+        "Performance"
+      ]
+    },
+    {
+      "project_id": "STATUS_KEYCARD_001",
+      "name": "Status Keycard Hardware",
+      "description": "Hardware wallet and secure key storage",
+      "ecosystem": "status",
+      "construction_duration": 24,
+      "construction_cost": 3.8,
+      "strategic_value": 0.88,
+      "technical_complexity": 0.92,
+      "market_impact": 0.85,
+      "resource_requirement": 0.95,
+      "innovation_level": 0.9,
+      "cooperation_projects": [
+        "STATUS_APP_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 1.2,
+        "2025": 1.5,
+        "2026": 1.1
+      },
+      "start_date": "2024-02-01",
+      "end_date": "2026-02-01",
+      "team_size": 12,
+      "technology_stack": [
+        "Hardware",
+        "Cryptography",
+        "NFC",
+        "Secure Elements"
+      ],
+      "risk_factors": [
+        "Hardware supply chain",
+        "Security audits",
+        "Manufacturing costs"
+      ],
+      "success_metrics": [
+        "Security certifications",
+        "Manufacturing volume",
+        "Integration success"
+      ]
+    },
+    {
+      "project_id": "STATUS_NETWORK_001",
+      "name": "Status Network Infrastructure",
+      "description": "Decentralized network infrastructure and incentives",
+      "ecosystem": "status",
+      "construction_duration": 30,
+      "construction_cost": 5.5,
+      "strategic_value": 0.9,
+      "technical_complexity": 0.95,
+      "market_impact": 0.88,
+      "resource_requirement": 0.92,
+      "innovation_level": 0.92,
+      "cooperation_projects": [
+        "STATUS_APP_001",
+        "LOGOS_WAKU_001"
+      ],
+      "precedence_projects": [
+        "STATUS_APP_001"
+      ],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 1.8,
+        "2025": 2.2,
+        "2026": 1.5
+      },
+      "start_date": "2024-03-01",
+      "end_date": "2026-09-01",
+      "team_size": 20,
+      "technology_stack": [
+        "Blockchain",
+        "Tokenomics",
+        "P2P",
+        "Incentive Design"
+      ],
+      "risk_factors": [
+        "Token economics",
+        "Network effects",
+        "Regulatory landscape"
+      ],
+      "success_metrics": [
+        "Network participation",
+        "Token utility",
+        "Decentralization metrics"
+      ]
+    },
+    {
+      "project_id": "VAC_RESEARCH_001",
+      "name": "Advanced Cryptography Research",
+      "description": "Research into novel cryptographic primitives",
+      "ecosystem": "vac",
+      "construction_duration": 36,
+      "construction_cost": 2.5,
+      "strategic_value": 0.85,
+      "technical_complexity": 0.98,
+      "market_impact": 0.6,
+      "resource_requirement": 0.7,
+      "innovation_level": 0.95,
+      "cooperation_projects": [
+        "LOGOS_NOMOS_001",
+        "STATUS_KEYCARD_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 0.8,
+        "2025": 0.9,
+        "2026": 0.8
+      },
+      "start_date": "2024-01-01",
+      "end_date": "2027-01-01",
+      "team_size": 8,
+      "technology_stack": [
+        "Mathematics",
+        "Cryptography",
+        "Formal Methods",
+        "Research"
+      ],
+      "risk_factors": [
+        "Research uncertainty",
+        "Academic timeline",
+        "Practical applicability"
+      ],
+      "success_metrics": [
+        "Publications",
+        "Protocol implementations",
+        "Academic recognition"
+      ]
+    },
+    {
+      "project_id": "VAC_ZEROKNOWLEDGE_001",
+      "name": "Zero-Knowledge Proof Systems",
+      "description": "Practical ZK proof systems for privacy",
+      "ecosystem": "vac",
+      "construction_duration": 28,
+      "construction_cost": 3.2,
+      "strategic_value": 0.9,
+      "technical_complexity": 0.95,
+      "market_impact": 0.85,
+      "resource_requirement": 0.8,
+      "innovation_level": 0.92,
+      "cooperation_projects": [
+        "LOGOS_WAKU_001",
+        "STATUS_NETWORK_001"
+      ],
+      "precedence_projects": [
+        "VAC_RESEARCH_001"
+      ],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 1.0,
+        "2025": 1.3,
+        "2026": 0.9
+      },
+      "start_date": "2024-06-01",
+      "end_date": "2026-10-01",
+      "team_size": 12,
+      "technology_stack": [
+        "ZK-SNARKs",
+        "ZK-STARKs",
+        "Circom",
+        "Cryptography"
+      ],
+      "risk_factors": [
+        "Performance optimization",
+        "Trusted setup",
+        "Complexity"
+      ],
+      "success_metrics": [
+        "Proof generation time",
+        "Verification speed",
+        "Circuit efficiency"
+      ]
+    },
+    {
+      "project_id": "IFT_FINANCE_001",
+      "name": "Decentralized Finance Infrastructure",
+      "description": "Core DeFi protocols and financial primitives",
+      "ecosystem": "ift",
+      "construction_duration": 22,
+      "construction_cost": 4.5,
+      "strategic_value": 0.92,
+      "technical_complexity": 0.88,
+      "market_impact": 0.95,
+      "resource_requirement": 0.85,
+      "innovation_level": 0.85,
+      "cooperation_projects": [
+        "STATUS_NETWORK_001",
+        "LOGOS_CORE_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 1.5,
+        "2025": 2.0,
+        "2026": 1.0
+      },
+      "start_date": "2024-02-01",
+      "end_date": "2025-12-01",
+      "team_size": 18,
+      "technology_stack": [
+        "Solidity",
+        "DeFi",
+        "Smart Contracts",
+        "Economics"
+      ],
+      "risk_factors": [
+        "Regulatory compliance",
+        "Smart contract security",
+        "Market volatility"
+      ],
+      "success_metrics": [
+        "Total value locked",
+        "Transaction volume",
+        "Protocol adoption"
+      ]
+    },
+    {
+      "project_id": "IFT_GOVERNANCE_001",
+      "name": "Decentralized Governance Platform",
+      "description": "On-chain governance and decision-making tools",
+      "ecosystem": "ift",
+      "construction_duration": 18,
+      "construction_cost": 2.8,
+      "strategic_value": 0.88,
+      "technical_complexity": 0.8,
+      "market_impact": 0.75,
+      "resource_requirement": 0.75,
+      "innovation_level": 0.82,
+      "cooperation_projects": [
+        "IFT_FINANCE_001",
+        "STATUS_APP_001"
+      ],
+      "precedence_projects": [],
+      "exclusive_projects": [],
+      "annual_budget_distribution": {
+        "2024": 1.0,
+        "2025": 1.2,
+        "2026": 0.6
+      },
+      "start_date": "2024-03-15",
+      "end_date": "2025-09-15",
+      "team_size": 12,
+      "technology_stack": [
+        "Governance",
+        "Voting",
+        "Smart Contracts",
+        "UI/UX"
+      ],
+      "risk_factors": [
+        "Governance attacks",
+        "Voter apathy",
+        "Complexity"
+      ],
+      "success_metrics": [
+        "Proposal volume",
+        "Voter participation",
+        "Decision quality"
+      ]
+    }
+  ]
+}

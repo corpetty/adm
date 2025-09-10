@@ -1,0 +1,13 @@
+evaluator_id,evaluation_type,projects,operator,values,confidence,criteria,timestamp,metadata
+CEO_Logos,ranking,"Logos Core Infrastructure,Status Mobile Application,Nimbus Ethereum 2.0 Client,Decentralized Finance Infrastructure",,,0.95,strategic_value,,"{""role"": ""executive"", ""focus"": ""strategic_alignment""}"
+CEO_Logos,threshold,Status Network Infrastructure,>=,0.85,0.9,strategic_value,,"{""role"": ""executive"", ""rationale"": ""critical_for_ecosystem""}"
+CTO_Technical,comparison,"Advanced Cryptography Research,Nomos Consensus Layer",>,,0.85,technical_complexity,,"{""role"": ""technical"", ""focus"": ""innovation""}"
+CTO_Technical,range,Nimbus Light Client,,"0.6,0.8",0.8,technical_complexity,,"{""role"": ""technical"", ""rationale"": ""moderate_complexity""}"
+CFO_Finance,comparison,"Status Network Infrastructure,Status Keycard Hardware",>,,0.9,resource_requirement,,"{""role"": ""financial"", ""focus"": ""resource_optimization""}"
+CFO_Finance,threshold,Waku Communication Protocol,<=,0.75,0.85,resource_requirement,,"{""role"": ""financial"", ""rationale"": ""budget_constraint""}"
+PM_Product,ranking,"Status Mobile Application,Nimbus Ethereum 2.0 Client,Decentralized Finance Infrastructure",,,0.88,market_impact,,"{""role"": ""product"", ""focus"": ""user_adoption""}"
+PM_Product,range,Portal Network Implementation,,"0.7,0.8",0.75,market_impact,,"{""role"": ""product"", ""rationale"": ""niche_but_important""}"
+Research_Director,comparison,"Zero-Knowledge Proof Systems,Advanced Cryptography Research",=,,0.92,innovation_level,,"{""role"": ""research"", ""focus"": ""breakthrough_potential""}"
+Research_Director,threshold,Nomos Consensus Layer,>=,0.9,0.88,innovation_level,,"{""role"": ""research"", ""rationale"": ""novel_consensus""}"
+Community_Rep,comparison,"Status Mobile Application,Status Desktop Application",>,,0.8,market_impact,,"{""role"": ""community"", ""focus"": ""user_experience""}"
+Community_Rep,ranking,"Waku Communication Protocol,Status Keycard Hardware,Nimbus Light Client",,,0.75,strategic_value,,"{""role"": ""community"", ""focus"": ""ecosystem_value""}"
