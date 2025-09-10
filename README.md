@@ -15,6 +15,13 @@ The portfolio management system provides data models, visualization tools, and a
 
 ```
 ├── README.md                 # This file - high-level overview
+├── dl-example/               # Deep Learning Portfolio Selection Framework
+│   ├── qualitative_evaluation_translator.py # Core translation module
+│   ├── evaluation_input_parser.py # Natural language processing
+│   ├── logos_nimbus_status_projects.py # Mocked project data
+│   ├── portfolio_optimization_demo.py # Complete mock demonstration
+│   ├── test_qualitative_evaluation.py # Comprehensive test suite
+│   └── README.md             # Detailed implementation guide
 ├── toy-data/                 # Sample dataset for demonstrations
 │   ├── projects.csv          # Core project information
 │   ├── dependencies.csv      # Project interdependencies
@@ -30,6 +37,7 @@ The portfolio management system provides data models, visualization tools, and a
 ## Key Components
 
 ### 1. Data Model (`toy-data/`)
+NOTE: this data model doesn't coincide with data models of `dl-example`
 
 A comprehensive data schema designed for portfolio analysis:
 
@@ -38,7 +46,17 @@ A comprehensive data schema designed for portfolio analysis:
 - **Strategic Dimensions** - Multi-faceted scoring across business objectives
 - **Cross-Platform Format** - CSV files compatible with Excel, Tableau, Python, R
 
-### 2. Visualization Framework (`toy-example/`)
+### 2. Deep Learning Portfolio Selection Framework (`dl-example/`)
+
+(WIP) A robust human-machine framework for project portfolio selection that converts qualitative evaluations into mathematical optimization constraints:
+
+- **Qualitative Evaluation Translation** - Converts human assessments to linear constraints
+- **Natural Language Processing** - Processes stakeholder evaluations in natural language
+- **Mathematical Optimization** - Generates constraint matrices for optimization frameworks
+- **Mocked Project Data** - Includes comprehensive Logos/Nimbus/Status ecosystem projects
+- **Comprehensive Testing** - Full test suite with realistic scenarios
+
+### 3. Visualization Framework (`toy-example/`)
 
 Interactive web-based visualizations built with D3.js:
 
@@ -66,6 +84,24 @@ python -m http.server 8000
 # Open browser to http://localhost:8000/portfolio_visualizations.html
 ```
 
+### Deep Learning Portfolio Selection
+
+To use the qualitative evaluation translation framework:
+
+```bash
+# Navigate to the deep learning example
+cd dl-example
+
+# Run the complete demonstration
+python portfolio_optimization_demo.py
+
+# Test the core functionality
+python test_qualitative_evaluation.py
+
+# Try the interactive evaluation parser
+python evaluation_input_parser.py
+```
+
 ### Using Your Own Data
 
 1. **Prepare Data** - Format your portfolio data using the schema in `toy-data/`
@@ -74,6 +110,13 @@ python -m http.server 8000
 4. **Deploy** - Host the visualizations on your preferred web platform
 
 ## Use Cases
+
+### Human-Machine Portfolio Selection
+
+- **Qualitative Assessment Integration** - Convert stakeholder opinions into mathematical constraints
+- **Multi-Criteria Decision Making** - Balance technical feasibility, strategic value, and resource constraints
+- **Stakeholder Consensus Building** - Systematically incorporate diverse expert perspectives
+- **Optimization-Ready Constraints** - Generate linear programming inputs from human evaluations
 
 ### Strategic Planning
 
@@ -162,6 +205,7 @@ We welcome contributions to improve the portfolio management system:
 
 ## Support and Documentation
 
+- **Deep Learning Framework** - See `dl-example/README.md` for qualitative evaluation translation guide
 - **Detailed Documentation** - See `toy-example/README.md` for implementation details
 - **Data Schema** - Reference `toy-example/core-data-flat.md` for data formats
 - **Visualization Patterns** - Review `toy-example/visualization-options.md` for design guidance

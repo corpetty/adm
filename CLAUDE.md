@@ -8,6 +8,7 @@ This repository contains a portfolio management system with interactive data vis
 
 - **toy-data/**: Sample CSV datasets representing projects, dependencies, resources, and strategic metrics
 - **toy-example/**: Complete visualization implementation with D3.js interactive dashboards
+- **dl-example/**: Deep learning portfolio optimization with qualitative evaluation translation
 
 ## Development Workflow
 
@@ -34,17 +35,27 @@ python -m http.server 8000
 
 ### Testing
 ```bash
-# Run comprehensive test suite
+# Run visualization test suite
 cd toy-example
 python test_visualizations.py
+
+# Run deep learning module test suite
+cd dl-example
+python test_qualitative_evaluation.py
 ```
 
-The test suite validates:
+The visualization test suite validates:
 - Data file integrity (CSV and JSON)
 - Visualization file presence
 - Data relationship consistency
 - Decision tree structure
 - Server accessibility
+
+The deep learning test suite validates:
+- Qualitative evaluation translation accuracy
+- Constraint generation and validation
+- Natural language parsing functionality
+- Mathematical optimization integration
 
 ## Architecture
 
@@ -126,3 +137,49 @@ The system uses a normalized relational schema across CSV files:
 - **Export functionality**: Use `ExportUtils` class to add export buttons to new visualizations
 - **Filtering**: Leverage `FilterControls` to add cross-visualization filtering capabilities
 - **Scenario analysis**: Integrate `ScenarioComparison` for portfolio modeling and comparison features
+
+### Deep Learning Portfolio Optimization
+- **Qualitative evaluation translation**: Convert human expert evaluations into mathematical constraints
+- **Natural language processing**: Parse free-form text evaluations using `NaturalLanguageParser`
+- **Constraint generation**: Create linear optimization constraints from subjective assessments
+- **Portfolio optimization**: Integrate with robust human-machine project selection frameworks
+
+## Deep Learning Module Architecture
+
+### Core Components
+1. **Qualitative Evaluation Translator** (`qualitative_evaluation_translator.py`)
+   - Main translation engine converting human evaluations to mathematical constraints
+   - Supports comparison, ranking, range, and threshold evaluation types
+   - Mathematical optimization interface for constraint matrices
+
+2. **Input/Output Parser** (`evaluation_input_parser.py`)
+   - Natural language processing for free-form evaluation text
+   - Structured data import/export (CSV, JSON formats)
+   - Interactive evaluation collection interface
+
+3. **Portfolio Optimization Demo** (`portfolio_optimization_demo.py`)
+   - Complete workflow demonstration using Logos/Nimbus/Status project data
+   - Integration with stakeholder evaluations and budget constraints
+   - Real-world portfolio selection scenarios
+
+### Deep Learning Workflow
+
+```bash
+# Navigate to dl-example directory
+cd dl-example
+
+# Run basic demonstration
+python demo.py
+
+# Run portfolio optimization with real project data
+python portfolio_optimization_demo.py
+
+# Run comprehensive tests
+python test_qualitative_evaluation.py
+```
+
+### Data Files
+- **logos_nimbus_status_projects.json**: Real project portfolio data from ecosystem
+- **stakeholder_evaluations.json**: Expert evaluation inputs
+- **budget_constraints.json**: Financial and resource limitations
+- **demo_evaluations.csv**: Example evaluation datasets
