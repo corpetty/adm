@@ -1,3 +1,35 @@
 ## Resources
 - https://github.com/status-im/status-network-monorepo
 - https://status.network
+
+## Peers & Comparables
+- Arbitrum One
+  - $19.21B TVL
+    - $5.5B USDC bridged to Hyperliquid
+    - $4.46B in ETH or liquid staking tokens (LSDs)
+    - $9.1B in stablecoins
+    - $952M in BTC derivatives
+    - $4.8B in other assets
+  - $22.4M revenue (2024)
+  - $2.6M/year to post blob data to Ethereum L1
+- Base
+  - $14.93B TVL
+    - $4.3B in ETH or liquid staking tokens (LSDs)
+    - $4.0B in stablecoins
+    - $2.13B in BTC derivatives
+    - $4.5B in other assets
+  - $67.28M in revenue (2024)
+- Optimism
+  - $3.53B TVL
+    - $1.07B in ETH or liquid staking tokens (LSDs)
+    - $557.5M in stablecoins
+    - $99.6M in BTC derivatives
+    - $1.76B in other assets
+  - $651K/year to post blob data to Ethereum L1
+- Linea
+  - $1.24B TVL
+    - $1.06B in ETH or liquid staking tokens (LSDs)
+    - $179.2M in stablecoins
+    - $27.7M in BTC derivatives
+    - $68.6M in other assets
+  - $96K/year to post blob data to Ethereum L1
