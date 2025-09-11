@@ -1,16 +1,53 @@
 """
 Qualitative Evaluation Translation Module
 
-This module converts human qualitative evaluations into linear equality or inequality 
-constraints that define a convex polytope representing the feasible space for the 
-project value matrix in the Robust Human-Machine Project Portfolio Selection System.
+This module implements the core translation engine that converts human qualitative 
+evaluations into linear equality and inequality constraints, defining a convex polytope 
+representing the feasible space for project value matrices in the Robust Human-Machine 
+Project Portfolio Selection System.
 
 Key Features:
-- Parse various types of qualitative evaluations
-- Convert to mathematical linear constraints
-- Define convex polytope boundaries
-- Handle uncertainty in project valuations
-- Support multiple evaluation formats
+- **Multi-Type Evaluation Support**: Handles comparisons, ranges, rankings, and thresholds
+- **Mathematical Translation**: Converts subjective evaluations to linear constraints (Ax ≤ b)
+- **Polytope Definition**: Creates convex polytope boundaries for optimization
+- **Multi-Criteria Support**: Handles multiple evaluation criteria simultaneously
+- **Stakeholder Integration**: Processes evaluations from multiple stakeholders
+- **Constraint Validation**: Checks system consistency and feasibility
+- **Export Capabilities**: Multiple output formats for integration with optimization tools
+
+Mathematical Foundation:
+- Project value vector: x ∈ ℝ^(n_projects × n_criteria)
+- Inequality constraints: A_ineq * x ≤ b_ineq
+- Equality constraints: A_eq * x = b_eq
+- Feasible polytope: P = {x : A_ineq * x ≤ b_ineq, A_eq * x = b_eq}
+
+Usage Example:
+    ```python
+    from qualitative_evaluation_translator import *
+    
+    # Create translator
+    translator = QualitativeEvaluationTranslator(
+        projects=["Project A", "Project B"],
+        criteria=["Strategic Value", "Technical Feasibility"]
+    )
+    
+    # Add evaluation
+    evaluation = QualitativeEvaluation(
+        evaluator_id="expert_1",
+        evaluation_type=EvaluationType.COMPARISON,
+        projects=["Project A", "Project B"],
+        operator=ComparisonOperator.GREATER,
+        criteria="Strategic Value"
+    )
+    translator.add_evaluation(evaluation)
+    
+    # Get constraint matrices
+    A_ineq, b_ineq, A_eq, b_eq = translator.get_constraint_matrices()
+    ```
+
+Author: Cline AI Assistant
+Version: 1.0.0
+Status: Phase 1 Complete - Core Translation Engine Operational
 """
 
 import numpy as np
@@ -116,8 +153,14 @@ class QualitativeEvaluationTranslator:
         idx_a = self.project_index[proj_a]
         idx_b = self.project_index[proj_b]
         
-        # For each criterion, create constraint
-        for crit_idx, criterion in enumerate(self.criteria):
+        # Only apply to the specified criterion, or all criteria if none specified
+        target_criteria = [evaluation.criteria] if evaluation.criteria else self.criteria
+        
+        for criterion in target_criteria:
+            if criterion not in self.criteria:
+                continue
+                
+            crit_idx = self.criteria_index[criterion]
             # Create coefficient vector
             coeffs = np.zeros(self.n_projects * self.n_criteria)
             
@@ -182,16 +225,22 @@ class QualitativeEvaluationTranslator:
         idx = self.project_index[proj]
         min_val, max_val = evaluation.values
         
-        # For each criterion, create range constraints
-        for crit_idx, criterion in enumerate(self.criteria):
+        # Only apply to the specified criterion, or all criteria if none specified
+        target_criteria = [evaluation.criteria] if evaluation.criteria else self.criteria
+        
+        for criterion in target_criteria:
+            if criterion not in self.criteria:
+                continue
+                
+            crit_idx = self.criteria_index[criterion]
             coeffs = np.zeros(self.n_projects * self.n_criteria)
             pos = idx * self.n_criteria + crit_idx
             
-            # Lower bound: v >= min_val
-            coeffs[pos] = 1.0
+            # Lower bound: v >= min_val (rewrite as -v <= -min_val)
+            coeffs[pos] = -1.0
             constraint_lower = LinearConstraint(
                 coefficients=coeffs.copy(),
-                bound=min_val,
+                bound=-min_val,
                 is_equality=False,
                 constraint_id=f"range_lower_{proj}_{criterion}",
                 source_evaluation=evaluation
@@ -199,10 +248,11 @@ class QualitativeEvaluationTranslator:
             constraints.append(constraint_lower)
             
             # Upper bound: v <= max_val
-            coeffs[pos] = -1.0
+            coeffs = np.zeros(self.n_projects * self.n_criteria)
+            coeffs[pos] = 1.0
             constraint_upper = LinearConstraint(
                 coefficients=coeffs.copy(),
-                bound=-max_val,
+                bound=max_val,
                 is_equality=False,
                 constraint_id=f"range_upper_{proj}_{criterion}",
                 source_evaluation=evaluation

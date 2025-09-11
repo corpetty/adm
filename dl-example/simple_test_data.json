@@ -1,0 +1,227 @@
+{
+  "vertices": [
+    [
+      0.4,
+      0.2,
+      0.1,
+      0.2
+    ],
+    [
+      0.4,
+      0.2,
+      0.1,
+      0.8
+    ],
+    [
+      0.4,
+      0.8,
+      0.1,
+      0.2
+    ],
+    [
+      0.4,
+      0.8,
+      0.1,
+      0.8
+    ],
+    [
+      0.4,
+      0.2,
+      0.6,
+      0.2
+    ],
+    [
+      0.4,
+      0.2,
+      0.6,
+      0.8
+    ],
+    [
+      0.4,
+      0.8,
+      0.6,
+      0.2
+    ],
+    [
+      0.4,
+      0.8,
+      0.6,
+      0.8
+    ],
+    [
+      0.9,
+      0.2,
+      0.1,
+      0.2
+    ],
+    [
+      0.9,
+      0.2,
+      0.1,
+      0.8
+    ],
+    [
+      0.9,
+      0.8,
+      0.1,
+      0.2
+    ],
+    [
+      0.9,
+      0.8,
+      0.1,
+      0.8
+    ],
+    [
+      0.9,
+      0.2,
+      0.6,
+      0.2
+    ],
+    [
+      0.9,
+      0.2,
+      0.6,
+      0.8
+    ],
+    [
+      0.9,
+      0.8,
+      0.6,
+      0.2
+    ],
+    [
+      0.9,
+      0.8,
+      0.6,
+      0.8
+    ]
+  ],
+  "constraints": [
+    {
+      "coefficients": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bound": -0.4,
+      "is_equality": false,
+      "constraint_id": "range_lower_Project A_Value"
+    },
+    {
+      "coefficients": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bound": 0.9,
+      "is_equality": false,
+      "constraint_id": "range_upper_Project A_Value"
+    },
+    {
+      "coefficients": [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "bound": -0.1,
+      "is_equality": false,
+      "constraint_id": "range_lower_Project B_Value"
+    },
+    {
+      "coefficients": [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "bound": 0.6,
+      "is_equality": false,
+      "constraint_id": "range_upper_Project B_Value"
+    },
+    {
+      "coefficients": [
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "bound": -0.2,
+      "is_equality": false,
+      "constraint_id": "range_lower_Project A_Cost"
+    },
+    {
+      "coefficients": [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "bound": 0.8,
+      "is_equality": false,
+      "constraint_id": "range_upper_Project A_Cost"
+    },
+    {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "bound": -0.2,
+      "is_equality": false,
+      "constraint_id": "range_lower_Project B_Cost"
+    },
+    {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "bound": 0.8,
+      "is_equality": false,
+      "constraint_id": "range_upper_Project B_Cost"
+    }
+  ],
+  "dimension_names": [
+    "Project A_Value",
+    "Project A_Cost",
+    "Project B_Value",
+    "Project B_Cost"
+  ],
+  "properties": {
+    "n_vertices": 16,
+    "n_constraints": 8,
+    "n_dimensions": 4,
+    "dimension_names": [
+      "Project A_Value",
+      "Project A_Cost",
+      "Project B_Value",
+      "Project B_Cost"
+    ],
+    "centroid": [
+      0.6500000000000001,
+      0.5,
+      0.35,
+      0.5
+    ],
+    "bounding_box": {
+      "min": [
+        0.4,
+        0.2,
+        0.1,
+        0.2
+      ],
+      "max": [
+        0.9,
+        0.8,
+        0.6,
+        0.8
+      ]
+    }
+  }
+}
