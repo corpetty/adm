@@ -16,6 +16,10 @@ The portfolio management system provides data models, visualization tools, and a
 ```
 ├── README.md                 # This file - high-level overview
 ├── PROJECT_PROPERTIES_GUIDELINES.md # Data input guidelines and best practices
+├── project_wizard.html      # Interactive project creation wizard
+├── project_wizard.js        # Wizard JavaScript functionality
+├── wizard_backend.py        # Python backend integration
+├── WIZARD_README.md          # Wizard documentation and usage guide
 ├── dl-example/               # Deep Learning Portfolio Selection Framework
 │   ├── qualitative_evaluation_translator.py # Core translation module
 │   ├── evaluation_input_parser.py # Natural language processing
@@ -57,7 +61,17 @@ A comprehensive data schema designed for portfolio analysis:
 - **Mocked Project Data** - Includes comprehensive Logos/Nimbus/Status ecosystem projects
 - **Comprehensive Testing** - Full test suite with realistic scenarios
 
-### 3. Visualization Framework (`toy-example/`)
+### 3. Interactive Project Wizard (`project_wizard.html`)
+
+A comprehensive web-based interface for guided project creation and stakeholder evaluation:
+
+- **Guided Project Creation** - Step-by-step forms with real-time validation and contextual help
+- **Stakeholder Evaluation Portal** - Natural language and structured evaluation collection
+- **Automatic Constraint Generation** - Convert qualitative assessments to mathematical constraints
+- **Advanced Export Options** - JSON, CSV, and Python formats for optimization frameworks
+- **Backend Integration** - Seamless connection to the research framework via `wizard_backend.py`
+
+### 4. Visualization Framework (`toy-example/`)
 
 Interactive web-based visualizations built with D3.js:
 
@@ -67,6 +81,25 @@ Interactive web-based visualizations built with D3.js:
 - **Modular Architecture** - Extensible framework for additional visualizations
 
 ## Getting Started
+
+### Interactive Project Wizard (Recommended)
+
+The easiest way to get started is with the interactive web-based wizard:
+
+```bash
+# Start a local web server
+python -m http.server 8000
+
+# Open browser to http://localhost:8000/project_wizard.html
+```
+
+**Features:**
+- 📋 **Guided Project Creation** - Step-by-step forms with validation
+- 👥 **Stakeholder Evaluation** - Natural language and structured input
+- 📊 **Constraint Analysis** - Automatic mathematical constraint generation
+- 💾 **Export Options** - JSON, CSV, and Python formats
+
+See `WIZARD_README.md` for detailed usage instructions.
 
 ### Quick Demo
 

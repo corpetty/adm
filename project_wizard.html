@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Project Creation & Evaluation Wizard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            min-height: 600px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .form-section h3 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .help-text {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            color: #007bff;
+            margin-left: 5px;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            transition: width 0.3s ease;
+        }
+
+        .validation-error {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .validation-success {
+            color: #28a745;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .score-slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .score-display {
+            text-align: center;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 5px;
+        }
+
+        .evaluation-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .evaluation-type-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .evaluation-type-card {
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .evaluation-type-card:hover {
+            border-color: #007bff;
+            background: #f8f9fa;
+        }
+
+        .evaluation-type-card.selected {
+            border-color: #007bff;
+            background: #e7f3ff;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .project-card h4 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: #6c757d;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .stakeholder-portal {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .stakeholder-portal h3 {
+            margin-bottom: 15px;
+        }
+
+        .natural-language-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1em;
+            resize: vertical;
+        }
+
+        .parsed-evaluations {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .parsed-evaluation {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+
+        .constraint-visualization {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .export-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e7f3ff;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .evaluation-type-selector {
+                grid-template-columns: 1fr;
+            }
+            
+            .export-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Project Portfolio Wizard</h1>
+            <p>Interactive project creation and stakeholder evaluation system</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('project-creation')">
+                📋 Project Creation
+            </button>
+            <button class="nav-tab" onclick="showTab('stakeholder-evaluation')">
+                👥 Stakeholder Evaluation
+            </button>
+            <button class="nav-tab" onclick="showTab('constraint-analysis')">
+                📊 Constraint Analysis
+            </button>
+            <button class="nav-tab" onclick="showTab('export-results')">
+                💾 Export Results
+            </button>
+        </div>
+
+        <!-- Project Creation Tab -->
+        <div id="project-creation" class="tab-content active">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 25%"></div>
+            </div>
+            
+            <form id="project-form">
+                <div class="form-section">
+                    <h3>📝 Basic Project Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="project-id">
+                                Project ID 
+                                <span class="tooltip">ℹ️
+                                    <span class="tooltiptext">
+                                        Unique identifier for the project. Use format like PRJ001 or LOGOS_CORE_001. 
+                                        No spaces or special characters except underscore/hyphen.
+                                    </span>
+                                </span>
+                            </label>
+                            <input type="text" id="project-id" name="project_id" required 
+                                   pattern="[A-Z0-9_-]+" maxlength="20"
+                                   placeholder="e.g., PRJ001, LOGOS_CORE_001">
+                            <div class="validation-error" id="project-id-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-name">
+                                Project Name
+                                <span class="tooltip">ℹ️
+                                    <span class="tooltiptext">
+                                        Clear, descriptive name (5-80 characters). Use title case and avoid abbreviations.
+                                    </span>
+                                </span>
+                            </label>
+                            <input type="text" id="project-name" name="name" required 
+                                   minlength="5" maxlength="80"
+                                   placeholder="e.g., Customer Portal Redesign">
+                            <div class="validation-error" id="project-name-error"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="project-description">
+                            Project Description
+                            <span class="tooltip">ℹ️
+                                <span class="tooltiptext">
+                                    Comprehensive summary (20-500 characters). Include key objectives and deliverables. 
+                                    Template: [Action] [Target] to [Outcome] by [Method]
+                                </span>
+                            </span>
+                        </label>
+                        <textarea id="project-description" name="description" required 
+                                  minlength="20" maxlength="500" rows="3"
+                                  placeholder="e.g., Modernize customer-facing web portal to improve user experience and reduce support tickets by implementing responsive design and self-service features"></textarea>
+                        <div class="help-text">Characters: <span id="desc-count">0</span>/500</div>
+                        <div class="validation-error" id="project-description-error"></div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="project-ecosystem">Ecosystem</label>
+                            <select id="project-ecosystem" name="ecosystem">
+                                <option value="">Select ecosystem...</option>
+                                <option value="logos">Logos</option>
+                                <option value="nimbus">Nimbus</option>
+                                <option value="status">Status</option>
+                                <option value="vac">VAC</option>
+                                <option value="ift">IFT</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-status">Status</label>
+                            <select id="project-status" name="status" required>
+                                <option value="">Select status...</option>
+                                <option value="Planning">Planning</option>
+                                <option value="Active">Active</option>
+                                <option value="On Hold">On Hold</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>📅 Timeline & Resources</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="start-date">Start Date</label>
+                            <input type="date" id="start-date" name="start_date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="end-date">End Date</label>
+                            <input type="date" id="end-date" name="end_date" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="construction-duration">
+                                Duration (months)
+                                <span class="tooltip">ℹ️
+                                    <span class="tooltiptext">
+                                        Project duration in months. Consider dependencies and buffer time.
+                                    </span>
+                                </span>
+                            </label>
+                            <input type="number" id="construction-duration" name="construction_duration" 
+                                   min="1" max="60" step="1" placeholder="e.g., 18">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="team-size">Team Size (FTE)</label>
+                            <input type="number" id="team-size" name="team_size" 
+                                   min="1" max="100" step="1" placeholder="e.g., 12">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="budget-allocated">
+                                Budget Allocated
+                                <span class="tooltip">ℹ️
+                                    <span class="tooltiptext">
+                                        Total project budget including 10-15% contingency. Include all costs: labor, materials, overhead.
+                                    </span>
+                                </span>
+                            </label>
+                            <input type="number" id="budget-allocated" name="budget_allocated" 
+                                   min="0" step="1000" placeholder="e.g., 250000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="construction-cost">
+                                Construction Cost (normalized 0.1-10.0)
+                                <span class="tooltip">ℹ️
+                                    <span class="tooltiptext">
+                                        Relative cost compared to portfolio average (1.0 = average). 
+                                        Include total cost of ownership and opportunity costs.
+                                    </span>
+                                </span>
+                            </label>
+                            <input type="number" id="construction-cost" name="construction_cost" 
+                                   min="0.1" max="10.0" step="0.1" placeholder="e.g., 2.5">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>🎯 Strategic Dimensions</h3>
+                    <p class="help-text">Rate each dimension on a scale from 0.0 to 1.0 (normalized) or 1-10 (traditional scale)</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="strategic-value">Strategic Value (0.0-1.0)</label>
+                            <input type="range" id="strategic-value" name="strategic_value" 
+                                   min="0" max="1" step="0.05" value="0.5" class="score-slider">
+                            <div class="score-display" id="strategic-value-display">0.50</div>
+                            <div class="help-text">Long-term strategic impact and alignment</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="technical-complexity">Technical Complexity (0.0-1.0)</label>
+                            <input type="range" id="technical-complexity" name="technical_complexity" 
+                                   min="0" max="1" step="0.05" value="0.5" class="score-slider">
+                            <div class="score-display" id="technical-complexity-display">0.50</div>
+                            <div class="help-text">Technology maturity, integration complexity, expertise requirements</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="market-impact">Market Impact (0.0-1.0)</label>
+                            <input type="range" id="market-impact" name="market_impact" 
+                                   min="0" max="1" step="0.05" value="0.5" class="score-slider">
+                            <div class="score-display" id="market-impact-display">0.50</div>
+                            <div class="help-text">Market size, competitive positioning, revenue impact</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="resource-requirement">Resource Requirement (0.0-1.0)</label>
+                            <input type="range" id="resource-requirement" name="resource_requirement" 
+                                   min="0" max="1" step="0.05" value="0.5" class="score-slider">
+                            <div class="score-display" id="resource-requirement-display">0.50</div>
+                            <div class="help-text">Human resources, financial investment, infrastructure needs</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="innovation-level">Innovation Level (0.0-1.0)</label>
+                            <input type="range" id="innovation-level" name="innovation_level" 
+                                   min="0" max="1" step="0.05" value="0.5" class="score-slider">
+                            <div class="score-display" id="innovation-level-display">0.50</div>
+                            <div class="help-text">Breakthrough potential, cutting-edge technology usage</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="strategic-priority">Strategic Priority</label>
+                            <select id="strategic-priority" name="strategic_priority" required>
+                                <option value="">Select priority...</option>
+                                <option value="Critical">Critical</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                            <div class="help-text">Limit "Critical" to <20% of portfolio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>⚠️ Risk Assessment</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="risk-level">Risk Level</label>
+                            <select id="risk-level" name="risk_level" required>
+                                <option value="">Select risk level...</option>
+                                <option value="Low">Low - Well-understood technology, experienced team</option>
+                                <option value="Medium">Medium - Some unknowns, moderate complexity</option>
+                                <option value="High">High - New technology, tight timeline, complex dependencies</option>
+                                <option value="Critical">Critical - Experimental approach, multiple high-risk factors</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="completion-percentage">Completion Percentage</label>
+                            <input type="number" id="completion-percentage" name="completion_percentage" 
+                                   min="0" max="100" step="5" value="0" placeholder="0-100">
+                            <div class="help-text">Base on deliverables completed, not time elapsed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="risk-factors">Risk Factors (JSON array)</label>
+                        <textarea id="risk-factors" name="risk_factors" rows="2" 
+                                  placeholder='["Technical complexity", "Market adoption", "Regulatory uncertainty"]'></textarea>
+                        <div class="help-text">Enter as JSON array of strings</div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>🔗 Project Relationships</h3>
+                    
+                    <div class="form-group">
+                        <label for="cooperation-projects">
+                            Cooperation Projects
+                            <span class="tooltip">ℹ️
+                                <span class="tooltiptext">
+                                    Projects that benefit from joint execution. Include shared resource synergies and knowledge transfer opportunities.
+                                </span>
+                            </span>
+                        </label>
+                        <textarea id="cooperation-projects" name="cooperation_projects" rows="2" 
+                                  placeholder='["PROJECT_ID_1", "PROJECT_ID_2"]'></textarea>
+                        <div class="help-text">JSON array of project IDs that benefit from joint execution</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="precedence-projects">
+                            Precedence Projects
+                            <span class="tooltip">ℹ️
+                                <span class="tooltiptext">
+                                    Projects that must complete before this project can start. Include technical and resource dependencies.
+                                </span>
+                            </span>
+                        </label>
+                        <textarea id="precedence-projects" name="precedence_projects" rows="2" 
+                                  placeholder='["PROJECT_ID_1", "PROJECT_ID_2"]'></textarea>
+                        <div class="help-text">JSON array of project IDs that must complete first</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exclusive-projects">
+                            Exclusive Projects
+                            <span class="tooltip">ℹ️
+                                <span class="tooltiptext">
+                                    Projects that cannot run simultaneously due to resource conflicts or strategic conflicts.
+                                </span>
+                            </span>
+                        </label>
+                        <textarea id="exclusive-projects" name="exclusive_projects" rows="2" 
+                                  placeholder='["PROJECT_ID_1", "PROJECT_ID_2"]'></textarea>
+                        <div class="help-text">JSON array of project IDs that cannot run simultaneously</div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>💻 Technology & Success Metrics</h3>
+                    
+                    <div class="form-group">
+                        <label for="technology-stack">Technology Stack</label>
+                        <textarea id="technology-stack" name="technology_stack" rows="2" 
+                                  placeholder='["Rust", "Nim", "Go", "Blockchain"]'></textarea>
+                        <div class="help-text">JSON array of primary technologies</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="success-metrics">Success Metrics</label>
+                        <textarea id="success-metrics" name="success_metrics" rows="2" 
+                                  placeholder='["Network throughput", "Developer adoption", "Transaction volume"]'></textarea>
+                        <div class="help-text">JSON array of key success indicators</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="button" class="btn btn-primary" onclick="validateAndSaveProject()">
+                        💾 Save Project
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="clearForm()" style="margin-left: 15px;">
+                        🔄 Clear Form
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Stakeholder Evaluation Tab -->
+        <div id="stakeholder-evaluation" class="tab-content">
+            <div class="stakeholder-portal">
+                <h3>👥 Stakeholder Evaluation Portal</h3>
+                <p>Provide your expert assessment of projects using natural language or structured inputs.</p>
+            </div>
+
+            <div class="form-section">
+                <h3>🆔 Evaluator Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="evaluator-id">Evaluator ID</label>
+                        <input type="text" id="evaluator-id" placeholder="e.g., expert_1, ceo, technical_lead">
+                    </div>
+                    <div class="form-group">
+                        <label for="evaluator-role">Role</label>
+                        <select id="evaluator-role">
+                            <option value="">Select role...</option>
+                            <option value="executive">Executive</option>
+                            <option value="technical_lead">Technical Lead</option>
+                            <option value="product_manager">Product Manager</option>
+                            <option value="researcher">Researcher</option>
+                            <option value="stakeholder">Stakeholder</option>
+                            <option value="expert">Domain Expert</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>💬 Natural Language Evaluation</h3>
+                <p class="help-text">Describe your evaluation in natural language. The system will automatically parse your input into mathematical constraints.</p>
+                
+                <div class="form-group">
+                    <label for="natural-language-input">Your Evaluation</label>
+                    <textarea id="natural-language-input" class="natural-language-input" 
+                              placeholder="Example:
+- ProjectA is better than ProjectB for strategic value
+- ProjectC should be between 0.3 and 0.7 for technical feasibility  
+- ProjectD must be at least 0.5 for market impact
+- Ranking by preference: ProjectA > ProjectC > ProjectB
+- ProjectE is equal to ProjectF in terms of innovation"></textarea>
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <button type="button" class="btn btn-primary" onclick="parseNaturalLanguage()">
+                        🔍 Parse Evaluation
+                    </button>
+                </div>
+                
+                <div id="parsed-evaluations" class="parsed-evaluations" style="display: none;">
+                    <h4>📋 Parsed Evaluations</h4>
+                    <div id="parsed-results"></div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>📊 Structured Evaluation</h3>
+                
+                <div class="evaluation-type-selector">
+                    <div class="evaluation-type-card" onclick="selectEvaluationType('comparison')">
+                        <h4>⚖️ Comparison</h4>
+                        <p>Compare two projects<br>(A > B, A = B, etc.)</p>
+                    </div>
+                    <div class="evaluation-type-card" onclick="selectEvaluationType('range')">
+                        <h4>📏 Range</h4>
+                        <p>Set acceptable value range<br>(0.3 ≤ value ≤ 0.7)</p>
+                    </div>
+                    <div class="evaluation-type-card" onclick="selectEvaluationType('ranking')">
+                        <h4>📊 Ranking</h4>
+                        <p>Rank projects by preference<br>(A > B > C)</p>
+                    </div>
+                    <div class="evaluation-type-card" onclick="selectEvaluationType('threshold')">
+                        <h4>🎯 Threshold</h4>
+                        <p>Set minimum/maximum values<br>(value ≥ 0.5)</p>
+                    </div>
+                </div>
+                
+                <div id="structured-evaluation-form">
+                    <!-- Dynamic evaluation forms will be inserted here -->
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>📋 Available Projects</h3>
+                <div id="available-projects">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>📝 Current Evaluations</h3>
+                <div id="current-evaluations-list">
+                    <!-- Current evaluations will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Constraint Analysis Tab -->
+        <div id="constraint-analysis" class="tab-content">
+            <div class="constraint-visualization">
+                <h3>📊 Constraint Space Analysis</h3>
+                <p>Mathematical analysis of stakeholder evaluations converted to optimization constraints.</p>
+            </div>
+
+            <div class="form-section">
+                <h3>🔍 Constraint Generation</h3>
+                <p class="help-text">
+                    The system converts qualitative evaluations into linear constraints that define a feasible polytope 
+                    for portfolio optimization. Each evaluation type generates specific mathematical constraints:
+                </p>
+                <ul style="margin: 15px 0; padding-left: 30px;">
+                    <li><strong>Comparisons</strong>: Generate inequality constraints (v_A - v_B ≥ ε)</li>
+                    <li><strong>Ranges</strong>: Generate bound constraints (min ≤ v_i ≤ max)</li>
+                    <li><strong>Rankings</strong>: Generate ordering constraints (v_1 ≥ v_2 ≥ ... ≥ v_n)</li>
+                    <li><strong>Thresholds</strong>: Generate minimum/maximum constraints (v_i ≥ threshold)</li>
+                </ul>
+            </div>
+
+            <div class="form-section">
+                <h3>📈 Analysis Results</h3>
+                <div id="constraint-analysis-results">
+                    <!-- Constraint analysis results will be displayed here -->
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>🎛️ Interactive Controls</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <button class="btn btn-primary" onclick="generateConstraintAnalysis()">
+                            🔄 Regenerate Analysis
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-secondary" onclick="validateConstraints()">
+                            ✅ Validate Constraints
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>📊 Visualization Options</h3>
+                <p class="help-text">
+                    For advanced visualization, export the constraint data and use the Python polytope visualizer 
+                    from the dl-example directory.
+                </p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <button class="btn btn-success" onclick="exportConstraintMatrices()">
+                            📐 Export Constraint Matrices
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" onclick="generatePolytopeVisualization()">
+                            🎨 Generate Polytope Visualization
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Results Tab -->
+        <div id="export-results" class="tab-content">
+            <div class="export-section">
+                <h3>💾 Export Portfolio Data</h3>
+                <p>Export your project and evaluation data in various formats for further analysis.</p>
+            </div>
+
+            <div class="form-section">
+                <h3>📊 Data Summary</h3>
+                <div id="export-data-preview">
+                    <!-- Export data preview will be displayed here -->
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>📁 Export Formats</h3>
+                
+                <div class="evaluation-card">
+                    <h4>📄 JSON Export</h4>
+                    <p>Complete data export including all projects, evaluations, and metadata. 
+                       Suitable for backup, data transfer, and integration with other systems.</p>
+                    <button class="btn btn-primary" onclick="exportToJSON()">
+                        📄 Download JSON
+                    </button>
+                </div>
+
+                <div class="evaluation-card">
+                    <h4>📊 CSV Export</h4>
+                    <p>Tabular data export compatible with Excel, Google Sheets, and data analysis tools. 
+                       Includes separate sections for projects and evaluations.</p>
+                    <button class="btn btn-primary" onclick="exportToCSV()">
+                        📊 Download CSV
+                    </button>
+                </div>
+
+                <div class="evaluation-card">
+                    <h4>🐍 Python Export</h4>
+                    <p>Python script with embedded data, ready for use with the qualitative evaluation translator. 
+                       Includes usage examples and integration code.</p>
+                    <button class="btn btn-primary" onclick="exportToPython()">
+                        🐍 Download Python
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>🔗 Integration Options</h3>
+                
+                <div class="evaluation-card">
+                    <h4>🔬 Research Integration</h4>
+                    <p>Use the exported data with the advanced constraint analysis tools:</p>
+                    <ol style="margin: 10px 0; padding-left: 30px;">
+                        <li>Export data using Python format</li>
+                        <li>Copy the file to the <code>dl-example/</code> directory</li>
+                        <li>Run: <code>python polytope_visualization_demo.py</code></li>
+                        <li>View interactive constraint visualizations</li>
+                    </ol>
+                </div>
+
+                <div class="evaluation-card">
+                    <h4>📈 Portfolio Optimization</h4>
+                    <p>Integration with optimization frameworks:</p>
+                    <ul style="margin: 10px 0; padding-left: 30px;">
+                        <li><strong>Linear Programming</strong>: Use constraint matrices with scipy.optimize</li>
+                        <li><strong>Multi-objective Optimization</strong>: NSGA-II, MOEA/D implementations</li>
+                        <li><strong>Constraint Programming</strong>: OR-Tools, Gurobi integration</li>
+                        <li><strong>Decision Support</strong>: TOPSIS, AHP, PROMETHEE methods</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>🔄 Data Management</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <button class="btn btn-secondary" onclick="clearAllData()">
+                            🗑️ Clear All Data
+                        </button>
+                        <div class="help-text">Remove all projects and evaluations from local storage</div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-secondary" onclick="importData()">
+                            📥 Import Data
+                        </button>
+                        <div class="help-text">Load data from JSON file</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="project_wizard.js"></script>
+    
+    <script>
+        // Additional helper functions for the wizard
+        
+        function exportConstraintMatrices() {
+            if (evaluations.length === 0) {
+                alert('No evaluations available. Please add evaluations first.');
+                return;
+            }
+            
+            const constraints = generateConstraintMatrices();
+            const data = {
+                constraint_matrices: constraints,
+                projects: projects.map(p => p.project_id),
+                criteria: ['Strategic Value', 'Technical Complexity', 'Market Impact', 'Resource Requirement', 'Innovation Level'],
+                timestamp: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            downloadFile(blob, 'constraint_matrices.json');
+        }
+        
+        function generatePolytopeVisualization() {
+            if (evaluations.length === 0) {
+                alert('No evaluations available. Please add evaluations first.');
+                return;
+            }
+            
+            const instructions = `
+To generate polytope visualizations:
+
+1. Export your data using the Python format
+2. Copy the exported file to the dl-example/ directory
+3. Run the following commands:
+
+cd dl-example/
+python polytope_visualization_demo.py
+
+This will generate interactive HTML visualizations showing:
+- 2D constraint space projections
+- 3D polytope visualizations
+- Constraint sensitivity analysis
+- Feasible region boundaries
+
+The visualizations will be saved as HTML files that you can open in your browser.
+            `;
+            
+            alert(instructions);
+        }
+        
+        function clearAllData() {
+            if (confirm('Are you sure you want to clear all data? This action cannot be undone.')) {
+                projects = [];
+                evaluations = [];
+                constraintData = null;
+                
+                localStorage.removeItem('portfolio_projects');
+                localStorage.removeItem('portfolio_evaluations');
+                
+                // Clear all displays
+                updateEvaluationsList();
+                loadProjectsForEvaluation();
+                
+                showSuccessMessage('All data cleared successfully');
+            }
+        }
+        
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        
+                        if (data.projects && Array.isArray(data.projects)) {
+                            projects = data.projects;
+                        }
+                        
+                        if (data.evaluations && Array.isArray(data.evaluations)) {
+                            evaluations = data.evaluations;
+                        }
+                        
+                        saveToLocalStorage();
+                        updateEvaluationsList();
+                        loadProjectsForEvaluation();
+                        
+                        showSuccessMessage(`Imported ${projects.length} projects and ${evaluations.length} evaluations`);
+                    } catch (error) {
+                        alert('Error importing data: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+    </script>
+</body>
+</html>
