@@ -15,6 +15,7 @@ The portfolio management system provides data models, visualization tools, and a
 
 ```
 ├── README.md                 # This file - high-level overview
+├── PROJECT_PROPERTIES_GUIDELINES.md # Data input guidelines and best practices
 ├── dl-example/               # Deep Learning Portfolio Selection Framework
 │   ├── qualitative_evaluation_translator.py # Core translation module
 │   ├── evaluation_input_parser.py # Natural language processing
@@ -205,6 +206,7 @@ We welcome contributions to improve the portfolio management system:
 
 ## Support and Documentation
 
+- **Project Properties Guidelines** - See `PROJECT_PROPERTIES_GUIDELINES.md` for comprehensive data input recommendations and best practices
 - **Deep Learning Framework** - See `dl-example/README.md` for qualitative evaluation translation guide
 - **Detailed Documentation** - See `toy-example/README.md` for implementation details
 - **Data Schema** - Reference `toy-example/core-data-flat.md` for data formats
